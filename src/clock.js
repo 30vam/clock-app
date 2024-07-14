@@ -1,14 +1,18 @@
 const timeDisplay = document.getElementById('time').childNodes[0];
 const dateDisplay = document.getElementById('date');
-const momentObj = moment();
+let momentObj = moment();
 
-function updateTime() {
+const updateTime = function() {
+    momentObj = moment();
     timeDisplay.nodeValue = momentObj.tz('America/Los_Angeles').format('HH:mm:ss');
 };
 
-function updateDate() {
+const updateDate = function() {
     dateDisplay.innerText = momentObj.tz('America/Los_Angeles').format('MMMM DD, YYYY');
 };
 
 updateTime();
 updateDate();
+
+//Update time every 1000ms
+setInterval(updateTime, 1000);
