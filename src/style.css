@@ -719,6 +719,10 @@ video {
   margin-top: 0.5rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1977,6 +1981,16 @@ video {
   line-height: 1;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1987,6 +2001,10 @@ video {
 
 .font-light {
   font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
 }
 
 .uppercase {
