@@ -5,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="src/style.css">
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
     <title> Clock & Timer </title>
-
     <!-- <style>
         body {
             background: linear-gradient(345deg, rgba(158,125,186,1) 26%, rgba(74,64,122,1) 96%);
         }
     </style> -->
 </head>
-<body class="flex text-4xl items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
+<body class="flex text-4xl font-light items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
     <main class="">
-        <section class="flex">
-            <div id="time" class="">
+        <section class="flex flex-col items-center">
+            <div id="time" class="font-extralight text-8xl">
                 00:00:00
             </div>
-            <div id="date">
+            <div id="date" class="">
                 SATURDAY ETC.
             </div>
         </section>
     </main>
+
+    <script src="/src/clock.js"></script>
 </body>
 </html>
