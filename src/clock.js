@@ -1,2 +1,2 @@
 const momentObj = moment();
-console.log(momentObj.format("YYYY-MM-DD"));
+console.log(momentObj.tz('America/Los_Angeles').format('MMMM Do YYYY, h:mm:ss a'));
