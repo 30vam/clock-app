@@ -1,27 +1,29 @@
 /*Select2 dropdowns...*/
 .select2 {
-    width: 125px !important;
+    font-size: 16px;
+    font-weight: 500;
+    width: 12em !important;
 }
 
 /*The main label*/
 .select2-selection {
-    padding: 1em 0.5em 1em 0;
-    border-radius: $big-border-radius !important;
-    background-color: $primary !important;
+    margin-left: 1em;
+    border-radius: 0.5em !important;
+    background-color: white !important;
     border: none !important;
-    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.651);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.651);
 }
 
 /*The text in the label*/
 .select2-selection__rendered {
-    color: $light !important;
+    color: black !important;
     position: absolute;
-    bottom: 15%;
+    bottom: 0%;
 }
 
 /*The arrow icon*/
 .select2-selection__arrow b {
-    background-image: url(images/expand-arrow-white.png) !important;
+    background-image: url(img/expand-arrow-white.png) !important;
     background-color: transparent;
     background-size: contain;
     border: none !important;
@@ -31,7 +33,7 @@
     left: 1em !important;
     transition: transform $transition-speed ease-in-out;
     /*The white color*/
-    filter: invert(96%) sepia(3%) saturate(79%) hue-rotate(349deg) brightness(87%) contrast(91%);
+    //filter: invert(96%) sepia(3%) saturate(79%) hue-rotate(349deg) brightness(87%) contrast(91%);
 }
 
 /*When the label is hovered, rotate the arrow*/
@@ -43,7 +45,7 @@
 
 /*The menu that opens when you click on the label*/
 .select2-dropdown {
-    width: 175px !important;
+    width: 10em !important;
     padding-right: 0.5em;
     margin-top: 0.5em;
     border-radius: $big-border-radius !important;
