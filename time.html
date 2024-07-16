@@ -14,14 +14,21 @@
         }
     </style> -->
 </head>
-<body class="flex text-4xl font-light items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
+<body class="flex text-2xl md:text-3xl font-light items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
     <main class="">
-        <section class="flex flex-col items-center">
-            <div id="time" class="font-extralight text-8xl">
+        <section class="flex flex-col items-center ">
+            <div id="time" class="text-6xl md:text-7xl font-extralight">
                 00:00:00
             </div>
             <div id="date" class="">
                 SATURDAY ETC.
+            </div>
+            <div class="mt-4 text-xl text-center">
+                <label for="timezone" class="align-middle"> Select timezone: </label>
+                <select name="timezone" id="timezone" class="mb-2 ml-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
+                    <option value=""></option>
+                    <option value="">sadasdasdas</option>
+                </select>
             </div>
         </section>
     </main>

@@ -1,15 +1,17 @@
 const timeDisplay = document.getElementById('time').childNodes[0];
 const dateDisplay = document.getElementById('date');
-let momentObj = moment();
+let now = null;
 
 const updateTime = function() {
-    momentObj = moment();
-    timeDisplay.nodeValue = momentObj.tz('America/Los_Angeles').format('HH:mm:ss');
+    now = moment();
+    timeDisplay.nodeValue = now.tz('America/Los_Angeles').format('HH:mm:ss');
 };
 
 const updateDate = function() {
-    dateDisplay.innerText = momentObj.tz('America/Los_Angeles').format('MMMM DD, YYYY');
+    dateDisplay.innerText = now.tz('America/Los_Angeles').format('MMMM DD, YYYY');
 };
+
+const addTimezones = function() {}
 
 updateTime();
 updateDate();
