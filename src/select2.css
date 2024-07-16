@@ -2,12 +2,12 @@
 .select2 {
     font-size: 16px;
     font-weight: 500;
-    width: 12em !important;
+    width: 16em !important;
 }
 
 /*The main label*/
 .select2-selection {
-    margin-left: 1em;
+    padding-top: 2em;
     border-radius: 0.5em !important;
     background-color: white !important;
     border: none !important;
@@ -18,14 +18,14 @@
 .select2-selection__rendered {
     color: black !important;
     position: absolute;
-    bottom: 0%;
+    bottom: 5%;
 }
 
 /*The arrow icon*/
 .select2-selection__arrow b {
-    background-image: url(img/expand-arrow-white.png) !important;
-    background-color: transparent;
-    background-size: contain;
+    background-image: url(src/expand-arrow-white.png) !important;
+    background-color: transparent !important;
+    background-size: contain !important;
     border: none !important;
     height: 15px !important;
     width: 15px !important;
