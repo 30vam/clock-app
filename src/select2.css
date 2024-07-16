@@ -1,0 +1,65 @@
+/*Select2 dropdowns...*/
+.select2 {
+    width: 125px !important;
+}
+
+/*The main label*/
+.select2-selection {
+    padding: 1em 0.5em 1em 0;
+    border-radius: $big-border-radius !important;
+    background-color: $primary !important;
+    border: none !important;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.651);
+}
+
+/*The text in the label*/
+.select2-selection__rendered {
+    color: $light !important;
+    position: absolute;
+    bottom: 15%;
+}
+
+/*The arrow icon*/
+.select2-selection__arrow b {
+    background-image: url(images/expand-arrow-white.png) !important;
+    background-color: transparent;
+    background-size: contain;
+    border: none !important;
+    height: 15px !important;
+    width: 15px !important;
+    top: 60% !important;
+    left: 1em !important;
+    transition: transform $transition-speed ease-in-out;
+    /*The white color*/
+    filter: invert(96%) sepia(3%) saturate(79%) hue-rotate(349deg) brightness(87%) contrast(91%);
+}
+
+/*When the label is hovered, rotate the arrow*/
+.select2:hover {
+    .select2-selection__arrow b {
+        transform: rotate(180deg);
+    }
+}
+
+/*The menu that opens when you click on the label*/
+.select2-dropdown {
+    width: 175px !important;
+    padding-right: 0.5em;
+    margin-top: 0.5em;
+    border-radius: $big-border-radius !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: none !important;
+    box-shadow: 0px 0px 15px 4px black;
+}
+
+/*Every option in the box should have transparent bg and have white text if not highlighted*/
+.select2-results__option--selectable {
+    color: $light;
+    background: none !important;
+}
+
+/*A highlighted option should be yellow*/
+.select2-results__option--highlighted {
+    color: $secondary !important;
+    background: none !important;
+}

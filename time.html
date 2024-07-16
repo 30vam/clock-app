@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/select2.css">
     <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
     <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <title> Clock & Timer </title>
     <!-- <style>
         body {
@@ -23,16 +25,24 @@
             <div id="date" class="">
                 SATURDAY ETC.
             </div>
-            <div class="mt-4 text-xl text-center">
-                <label for="timezone" class="align-middle"> Select timezone: </label>
-                <select name="timezone" id="timezone" class="mb-2 ml-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    <option value=""></option>
-                    <option value="">sadasdasdas</option>
+            <div class="flex items-center mt-8 text-xl text-center">
+                <label for="timezone" class="pb-1"> Select timezone: </label>
+                <select name="timezone" id="timezone" class="p-2 ml-2 text-sm font-[500] select2">
+                    <option value="">test 1</option>
+                    <option value="">America/Los_Angeles</option>
                 </select>
             </div>
         </section>
     </main>
 
     <script src="/src/clock.js"></script>
+    <!--Select2 cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      $('.select2').select2({
+        minimumResultsForSearch: 20 // at least 20 results must be displayed
+      });
+    </script>
 </body>
 </html>
