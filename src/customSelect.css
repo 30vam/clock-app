@@ -82,7 +82,8 @@
     backdrop-filter: blur(4.5px);
     -webkit-backdrop-filter: blur(4.5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-  
+    user-select: none;
+
     /* default state of dropdown list */
     /* it is not visible */
     opacity: 0;
@@ -94,6 +95,7 @@
     border-radius: 9px;
     transition: all 0.2s ease;
     color: #292d34;
+    user-select: none;
   }
   .dropdown .optionbox .option:not(:last-of-type) {
     margin-bottom: 8px;
