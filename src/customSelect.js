@@ -1,8 +1,6 @@
 const dropdowns = document.getElementsByClassName('dropdown');
 const body = document.getElementsByTagName('body')[0];
 
-const searchBarID = 'dropdown-search'
-
 // Toggle optionbox when clicking on input
 function toggleDropdown (e, dropdown) {
     e.stopPropagation();  // Stop event bubbling so body isn't clicked on for closedDropdownFromOutside function
@@ -29,9 +27,17 @@ function closedDropdownFromOutside(e, dropdown) {
 }
 
 for (const dropdown of dropdowns) {
-    const inputElement = dropdown.getElementsByTagName('input')[0];
-    const optionBox = dropdown.getElementsByTagName('ul')[0];
+    const inputElement = dropdown.getElementsByClassName('dropdown-input')[0];
+    const optionBox = dropdown.getElementsByClassName('optionbox')[0];
 
+    // Add search bar if necessary
+    if (dropdown.classList.contains('enable-dropdown-search')) {
+        const dropdownSearch = document.createElement('input');  // Create the search bar as an input element
+        dropdownSearch.setAttribute('type', 'text');
+        dropdownSearch.placeholder = "Search Timezones...";  // Set the placeholder text for the search bar
+        dropdownSearch.classList.add('dropdown-search');  // Give a class to the search bar, used for its CSS stylings
+        optionBox.prepend(dropdownSearch);  // Add the search bar as the first child of .optionbox
+    }
     // Adding event listeners
     // When input is clicked on, .opened class will be toggled.
     inputElement.addEventListener('focus', function() { this.blur(); });  // This line disables user text highlighting/selection in <input> field
