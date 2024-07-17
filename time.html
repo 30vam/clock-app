@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="src/select2.css">
-    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
-    <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="src/customSelect.css">
+
+
     <title> Clock & Timer </title>
     <!-- <style>
         body {
@@ -26,23 +25,21 @@
                 SATURDAY ETC.
             </div>
             <div class="flex flex-col items-center mt-8 text-xl text-center md:flex-row md:mt-16">
-                <label for="timezone" class="pb-1 mb-2 font-normal md:mb-0 md:mr-4"> Timezone: </label>
-                <select name="timezone" id="timezone" class="select2 timezone-select">
-                    <option value="">Test 1</option>
-                    <option value="">America/Los_Angeles</option>
-                </select>
+                <div class="dropdown">
+                    <input type="text" placeholder="Select a timezone" id="timezone-dropdown" readonly>
+                    <ul class="options">
+                        <li class="option"> Test 1 </li>
+                        <li class="option"> America/Los_Angeles </li>
+                     </ul>
+                </div>
+               
             </div>
         </section>
     </main>
 
-    <script src="/src/clock.js"></script>
-    <!--Select2 cdn-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-      $('.select2').select2({
-        minimumResultsForSearch: 20 // at least 20 results must be displayed
-      });
-    </script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
+    <script src="src/customSelect.js"></script>
+    <script src="src/clock.js"></script>
 </body>
 </html>
