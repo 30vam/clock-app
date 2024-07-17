@@ -26,6 +26,11 @@ function closedDropdownFromOutside(e, dropdown) {
         dropdown.classList.remove('opened');  // Remove .opened if dropdown was already open, no need to check if searchbar was clicked, because event propagation stops from clicking on body
 }
 
+// New search results after search input text has been changed
+function updateSearchResults(e, dropdownSearch, optionbox) {
+    console.log(dropdownSearch.value);
+}
+
 for (const dropdown of dropdowns) {
     const inputElement = dropdown.getElementsByClassName('dropdown-input')[0];
     const optionBox = dropdown.getElementsByClassName('optionbox')[0];
@@ -36,6 +41,7 @@ for (const dropdown of dropdowns) {
         dropdownSearch.setAttribute('type', 'text');
         dropdownSearch.placeholder = "Search...";  // Set the placeholder text for the search bar
         dropdownSearch.classList.add('dropdown-search');  // Give a class to the search bar, used for its CSS stylings
+        dropdownSearch.addEventListener('input', e => updateSearchResults(e, dropdownSearch,optionBox));
         optionBox.prepend(dropdownSearch);  // Add the search bar as the first child of .optionbox
     }
     // Adding event listeners
