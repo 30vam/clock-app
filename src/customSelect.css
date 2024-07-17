@@ -19,7 +19,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --input-border: none;
     --input-outline: none;
     --input-box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
-    --input-font-size: 20px;
+    --input-font-size: 18px;
     --input-text-color: #495057;
 
     --arrow-top-offset: 16px;
@@ -33,14 +33,15 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --optionbox-border: none;
     --optionbox-outline: none;
     --optionbox-box-shadow: 0 10px 25px rgba(19, 19, 19, 0.4);
-    --optionbox-font-size: 20px;
+    --optionbox-font-size: 16px;
     --optionbox-text-color: #495057;
     --optionbox-filter: blur(4.5px);
     --optionbox-border: 1px solid rgba(255, 255, 255, 0.18);
     --optionbox-transform-transition: translateY(-50px);
 
     --search-bg: white;
-    --search-text-color: rgb(0, 0, 0);
+    --search-font-size: 16px;
+    --search-text-color: #495057;
     --search-box-shadow: 0 0 5px 0px rgba(49, 0, 105, 0.4);
     --search-border: none;
     --search-focus-outline: none;
@@ -52,7 +53,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --option-margin-bottom: 8px;
     --option-text-color: #292d34;
     --option-text-color-hover: white;
-    --option-hover-bg: #5bc5fa;
+    --option-hover-bg: #e0aaff;
     --option-hover-box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
 
     --dropdown-transition-speed: 0.5s;
@@ -154,6 +155,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     padding: var(--option-padding);
     margin-bottom: var(--option-margin-bottom);
     background-color: var(--search-bg);
+    font-size: var(--search-font-size);
     color:var(--search-text-color);
     border-radius: var(--option-border-radius);
     border: var(--search-border);
