@@ -4,6 +4,7 @@
     --dropdown-bg: white;
     --dropdown-border-radius: 9px;
     --dropdown-box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
+    --dropdown-font-weight: 500;
 
     --input-border-radius: 9px;
     --input-padding: 32px 24px;
@@ -11,13 +12,14 @@
     --input-outline: none;
     --input-box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
     --input-font-size: 20px;
-
+    --input-text-color: #495057;
 
 }
 
 
 /* Give this class to the wrapper element */
 .dropdown {
+  font-weight: var(--dropdown-font-weight);
     box-sizing: border-box;
     width: var(--dropdown-width);
     height: var(--dropdown-height);
@@ -47,6 +49,7 @@
 
   /* Input element inside the wrapper class */
   .dropdown input {
+    color: var(--input-text-color);
     width: 100%;
     height: 100%;
     border-radius: var(--input-border-radius);
