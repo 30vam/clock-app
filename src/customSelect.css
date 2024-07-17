@@ -7,8 +7,8 @@ Inside the .optionbox, you can add other divs as options: .option
 Adding a .enable-dropdown-search to the wrapper div will add the search function*/
 
 :root {
-    --dropdown-width: 10em;
-    --dropdown-height: 2em;
+    --dropdown-width: 260px;
+    --dropdown-height: 48px;
     --dropdown-bg: white;
     --dropdown-border-radius: 9px;
     --dropdown-box-shadow: 0 10px 25px rgba(19, 19, 19, 0.4);
@@ -22,7 +22,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --input-font-size: 20px;
     --input-text-color: #495057;
 
-    --arrow-top-offset: 22px;
+    --arrow-top-offset: 16px;
     --arrow-right-offset: 20px;
 
     --optionbox-padding: 8px;
@@ -141,7 +141,6 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   
   /* Dropdown Search */
   .drowdown .optionbox .dropdown-search {
-    display: block;
     background-color: red;
     color:red;
     padding: var(--option-padding);
