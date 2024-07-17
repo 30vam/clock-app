@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/customSelect.css">
 
-
     <title> Clock & Timer </title>
     <!-- <style>
         body {
@@ -15,28 +14,26 @@
         }
     </style> -->
 </head>
-<body class="flex text-2xl md:text-3xl font-light items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
+<body class="flex text-2xl overflow-hidden bg-no-repeat md:text-3xl font-light items-center justify-center h-screen bg-[linear-gradient(345deg,_#9e7dba_26%,_#4a407a_96%)]">
     <main class="">
-        <section class="flex flex-col items-center ">
+        <section class="flex flex-col items-center">
             <div id="time" class="text-6xl md:text-7xl font-extralight">
                 00:00:00
             </div>
             <div id="date" class="">
                 SATURDAY ETC.
             </div>
-            <div class="flex flex-col items-center mt-8 text-xl text-center md:flex-row md:mt-16">
-                <div class="dropdown">
-                    <input type="text" placeholder="Select a timezone" id="timezone-dropdown" readonly>
-                    <ul class="options">
-                        <li class="option"> Test 1 </li>
-                        <li class="option"> America/Los_Angeles </li>
-                     </ul>
-                </div>
-               
+            <div class="dropdown">
+                <input class="" type="text" placeholder="Select a timezone" id="timezone-dropdown" readonly>
+                <ul class="options">
+                    <li class="option"> Test 1 </li>
+                    <li class="option"> America/Los_Angeles </li>
+                </ul>
             </div>
         </section>
     </main>
 
+    <!-- Scripts -->
     <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
     <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
     <script src="src/customSelect.js"></script>
