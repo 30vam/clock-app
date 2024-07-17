@@ -24,11 +24,28 @@ function closedDropdownFromOutside(e, dropdown) {
     const clickedObj = e.target;
     if (dropdown.classList.contains('opened'))
         dropdown.classList.remove('opened');  // Remove .opened if dropdown was already open, no need to check if searchbar was clicked, because event propagation stops from clicking on body
+    
+    // Also clear search filters in the dropdown has search
+    if (dropdown.classList.contains('enable-dropdown-search')) {
+        dropdownSearch = dropdown.querySelector('.dropdown-search');
+        dropdownSearch.value = '';
+        dropdownSearch.dispatchEvent(new Event('input'))  // Fire an event after changin search value programmatically
+        console.log(dropdownSearch)
+    }
 }
 
 // New search results after search input text has been changed
 function updateSearchResults(e, dropdownSearch, optionbox) {
-    console.log(dropdownSearch.value);
+    const options = optionbox.querySelectorAll('.option');  //Capture a list of all availabe options
+    const filter = dropdownSearch.value.toUpperCase()
+
+    //Only make the .option elements visible that have the search filter in their textContent
+    for (const option of options) {
+        if (option.textContent.toUpperCase().indexOf(filter) > -1)
+            option.style.display = '';
+        else
+            option.style.display = 'none';
+    }
 }
 
 for (const dropdown of dropdowns) {
