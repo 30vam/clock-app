@@ -34,7 +34,7 @@ for (const dropdown of dropdowns) {
     if (dropdown.classList.contains('enable-dropdown-search')) {
         const dropdownSearch = document.createElement('input');  // Create the search bar as an input element
         dropdownSearch.setAttribute('type', 'text');
-        dropdownSearch.placeholder = "Search Timezones...";  // Set the placeholder text for the search bar
+        dropdownSearch.placeholder = "Search...";  // Set the placeholder text for the search bar
         dropdownSearch.classList.add('dropdown-search');  // Give a class to the search bar, used for its CSS stylings
         optionBox.prepend(dropdownSearch);  // Add the search bar as the first child of .optionbox
     }

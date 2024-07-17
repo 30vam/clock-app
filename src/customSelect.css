@@ -24,6 +24,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
 
     --arrow-top-offset: 16px;
     --arrow-right-offset: 20px;
+    --arrow-top-offset-transition: 22px;
 
     --optionbox-padding: 8px;
     --optionbox-top-offset: 80px;
@@ -38,13 +39,21 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --optionbox-border: 1px solid rgba(255, 255, 255, 0.18);
     --optionbox-transform-transition: translateY(-50px);
 
+    --search-bg: white;
+    --search-text-color: rgb(0, 0, 0);
+    --search-box-shadow: 0 0 5px 0px rgba(49, 0, 105, 0.4);
+    --search-border: none;
+    --search-focus-outline: none;
+    --search-focus-border: none;
+    --search-focus-box-shadow: 0px 0px 5px 3px rgba(67, 0, 105, 0.4);
+
     --option-padding: 4px 16px;
     --option-border-radius: 9px;
     --option-margin-bottom: 8px;
     --option-text-color: #292d34;
     --option-text-color-hover: white;
-    --option-bg-hover: #5bc5fa;
-    --option-box-shadow-hover: 0 10px 25px rgba(42, 179, 248, 0.4);
+    --option-hover-bg: #5bc5fa;
+    --option-hover-box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
 
     --dropdown-transition-speed: 0.5s;
     --hover-transition-speed: 0.2s;
@@ -135,18 +144,27 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   }
   .dropdown .optionbox .option:hover {
     color: var(--option-text-color-hover);
-    background: var(--option-bg-hover);
+    background: var(--option-hover-bg);
     box-shadow: var(--option-box-shadow);
   }
   
   /* Dropdown Search */
-  .drowdown .optionbox .dropdown-search {
-    background-color: red;
-    color:red;
+  .dropdown-search {
+    width: 100%;
     padding: var(--option-padding);
+    margin-bottom: var(--option-margin-bottom);
+    background-color: var(--search-bg);
+    color:var(--search-text-color);
     border-radius: var(--option-border-radius);
+    border: var(--search-border);
+    box-shadow: var(--search-box-shadow);
     transition: all var(--hover-transition-speed) ease;
-    color: var(--option-text-color);
+  }
+
+  .dropdown-search:focus {
+    outline: var(--search-focus-outline);
+    border: var(--search-focus-border);
+    box-shadow: var(--search-focus-box-shadow);
   }
 
   /* opened state of dropdown list */
@@ -157,5 +175,5 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   }
   .dropdown.opened::before {
     transform: rotate(-225deg);
-    top: 30px;
+    top: var(--arrow-top-offset-transition);
   }
