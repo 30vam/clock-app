@@ -61,7 +61,7 @@
     left: 0;*/
     user-select: none;
   }
-  .dropdown .option-box {
+  .dropdown .optionbox {
     width: 100%;
     border-radius: 9px;
     padding: 8px;
@@ -86,16 +86,16 @@
     transform: translateY(-50px);
     visibility: hidden;
   }
-  .dropdown .option-box .option {
+  .dropdown .optionbox .option {
     padding: 16px;
     border-radius: 9px;
     transition: all 0.2s ease;
     color: #292d34;
   }
-  .dropdown .option-box .option:not(:last-of-type) {
+  .dropdown .optionbox .option:not(:last-of-type) {
     margin-bottom: 8px;
   }
-  .dropdown .option-box .option:hover {
+  .dropdown .optionbox .option:hover {
     color: white;
     background: #5bc5fa;
     box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
@@ -103,7 +103,7 @@
   
   
   /* opened state of dropdown list */
-  .dropdown.opened .option-box {
+  .dropdown.opened .optionbox {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
