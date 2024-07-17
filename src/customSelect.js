@@ -34,6 +34,7 @@ for (const dropdown of dropdowns) {
 
     // Adding event listeners
     // When input is clicked on, .opened class will be toggled.
+    inputElement.addEventListener('focus', function() { this.blur(); });  // This line disables user text highlighting/selection in <input> field
     inputElement.addEventListener('click', e => toggleDropdown(e, dropdown));
     optionBox.addEventListener('click', e => selectOption(e, inputElement, dropdown));
     body.addEventListener('click', e => closedDropdownFromOutside(e, dropdown));
