@@ -1,7 +1,8 @@
 // Elements
-const timeDisplay = document.getElementById('time').childNodes[0];
-const dateDisplay = document.getElementById('date');
-const timezoneDropdown = document.getElementById('timezone-dropdown');
+const timeDisplay = document.querySelector('#time');
+const dateDisplay = document.querySelector('#date');
+const timezoneDropdown = document.querySelector('#timezone-dropdown');
+const timezoneInput = timezoneDropdown.querySelector('.dropdown-input');
 
 // Variables
 const timeFormat = 'HH:mm:ss';
@@ -27,14 +28,17 @@ function addTimezones() {
 
 function updateTime() {
     now = moment();
-    timeDisplay.nodeValue = now.tz('America/Los_Angeles').format(timeFormat);
+    timeDisplay.textContent = now.tz('America/Los_Angeles').format(timeFormat);
 }
 
 function updateDate() {
-    dateDisplay.innerText = now.tz('America/Los_Angeles').format(dateFormat);
+    dateDisplay.textContent = now.tz('America/Los_Angeles').format(dateFormat);
 }
 
+selectedTimezone = timezoneInput.value;
+console.log(selectedTimezone);
 addTimezones();
-updateTime();
-updateDate();
+updateTime('Asia/Tehran');
+updateDate('Asia/Tehran');
+//Add dropdown event listener here
 setInterval(updateTime, 1000);  // Update time every 1000ms
