@@ -14,7 +14,7 @@ function addTimezones() {
     const optionbox = timezoneDropdown.querySelector('.optionbox');  // Get the .optionbox object
     for (const timezone of timezones) {
         // Add each timezone to a map in a correct format
-        const optionName = timezone;  // Create the name that actually appears in the dropdown
+        const optionName = timezone.replace(/\//g, ' - ').replace(/_/g, " ");;  // Create the name that actually appears in the dropdown
         timezoneMap.set(optionName, () => { now.tz(timezone) });
         
         // Create a new timezone option div and add it to dropdown
