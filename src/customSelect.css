@@ -3,7 +3,6 @@ First create a wrapper html with the class .dropdown
 Then Create a input element as its child: .dropdown-input
 Create another div child for the wrapper class: .optionbox
 Inside the .optionbox, you can add other divs as options: .option
-
 Adding a .enable-dropdown-search to the wrapper div will add the search function*/
 
 :root {
@@ -41,6 +40,10 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --optionbox-filter: blur(4.5px);
     --optionbox-border: 1px solid rgba(255, 255, 255, 0.18);
     --optionbox-transform-transition: translateY(-50px);
+
+    --scrollbar-width: 12px;
+    --scrollbar-color: #8888887a;
+    --scrollbar-hover-color: #555;
 
     --search-bg: white;
     --search-font-size: 16px;
@@ -129,6 +132,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     -webkit-backdrop-filter: var(--optionbox-filter);
     border: var(--optionbox-border);
     user-select: none;
+    overflow-y: scroll;
     /* default state of dropdown list */
     /* it is not visible */
     opacity: 0;
@@ -155,6 +159,8 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   /* Dropdown Search */
   .dropdown-search {
     width: 100%;
+    /*position: sticky;
+    top: 0;*/
     padding: var(--option-padding);
     margin-bottom: var(--option-margin-bottom);
     background-color: var(--search-bg);
@@ -189,4 +195,29 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
       top: var(--optionbox-mobile-top-offset);
       max-height: var(--optionbox-mobile-max-height);
     }
+  }
+  
+  /* SCROLL BAR */
+  @media screen and (orientation:landscape) {
+    .dropdown .optionbox::-webkit-scrollbar { 
+      width: var(--scrollbar-width); 
+    } 
+    
+    .dropdown .optionbox::-webkit-scrollbar-track { 
+      background: none; 
+    } 
+    
+    .dropdown .optionbox::-webkit-scrollbar-thumb { 
+      border-radius: var(--option-border-radius);
+      background: var(--scrollbar-color); 
+      overflow: hidden;
+    } 
+    
+    .dropdown .optionbox::-webkit-scrollbar-thumb:hover { 
+      background: var(--scrollbar-hover-color); 
+    } 
+    
+    .dropdown .optionbox::-webkit-scrollbar-button { 
+      display: none; 
+    } 
   }
