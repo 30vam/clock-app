@@ -112,7 +112,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     width: 100%;
     border-radius: 9px;
     padding: var(--optionbox-padding);
-    cursor: pointer;
+    
     background: var(--optionbox-bg);
     border: var(--optionbox-border);
     outline: var(--optionbox-outline);
@@ -126,7 +126,6 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     -webkit-backdrop-filter: var(--optionbox-filter);
     border: var(--optionbox-border);
     user-select: none;
-
     /* default state of dropdown list */
     /* it is not visible */
     opacity: 0;
@@ -138,6 +137,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     border-radius: var(--option-border-radius);
     transition: all var(--hover-transition-speed) ease;
     color: var(--option-text-color);
+    cursor: pointer;
     user-select: none;
   }
   .dropdown .optionbox .option:not(:last-of-type) {
