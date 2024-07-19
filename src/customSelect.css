@@ -26,8 +26,11 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --arrow-right-offset: 20px;
     --arrow-top-offset-transition: 22px;
 
+    --optionbox-max-height: 300px;
+    --optionbox-mobile-max-height: 200px;
     --optionbox-padding: 8px;
     --optionbox-top-offset: 80px;
+    --optionbox-mobile-top-offset: 60px;
     --optionbox-bg: rgba(255, 255, 255, 0.55);
     --optionbox-opacity: 1;
     --optionbox-border: none;
@@ -110,9 +113,9 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   }
   .dropdown .optionbox {
     width: 100%;
+    max-height: var(--optionbox-max-height);
     border-radius: 9px;
     padding: var(--optionbox-padding);
-    
     background: var(--optionbox-bg);
     border: var(--optionbox-border);
     outline: var(--optionbox-outline);
@@ -178,4 +181,12 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
   .dropdown.opened::before {
     transform: rotate(-225deg);
     top: var(--arrow-top-offset-transition);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dropdown .optionbox {
+      top: var(--optionbox-mobile-top-offset);
+      max-height: var(--optionbox-mobile-max-height);
+    }
   }
