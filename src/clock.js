@@ -7,38 +7,43 @@ const timezoneInput = timezoneDropdown.querySelector('.dropdown-input');
 // Variables
 const timeFormat = 'HH:mm:ss';
 const dateFormat = 'MMMM DD, YYYY';
-let now = null;
+const defaultTimezone = 'Asia/Tehran';
 const timezones = moment.tz.names();
-const timezoneMap = new Map(); // Key(left side) is moment timezone name, and value(right side) is an the function: now.tz(name)
+const timezoneMap = new Map(); // Key(left side) is dropdown timezone name, and value(right side) is the timezone name in MomentJS
 
 function addTimezones() {
     const optionbox = timezoneDropdown.querySelector('.optionbox');  // Get the .optionbox object
     for (const timezone of timezones) {
         // Add each timezone to a map in a correct format
-        const optionName = timezone.replace(/\//g, ' - ').replace(/_/g, " ");;  // Create the name that actually appears in the dropdown
-        timezoneMap.set(optionName, () => { now.tz(timezone) });
+        const displayName = timezone.replace(/\//g, ' - ').replace(/_/g, " ");;  // Create the name that actually appears in the dropdown
+        timezoneMap.set(displayName, timezone);
         
         // Create a new timezone option div and add it to dropdown
         const optionDiv = document.createElement('div');
         optionDiv.classList.add('option');
-        optionDiv.textContent = optionName;
+        optionDiv.textContent = displayName;
         optionbox.append(optionDiv);
     }
 }
 
-function updateTime() {
-    now = moment();
-    timeDisplay.textContent = now.tz('America/Los_Angeles').format(timeFormat);
+function updateTime(timeOrDate = 'time') {
+    // If the selector is empty, then chose the default timezone. Else find out what the timezone was called in MomentJS
+    let timezone = timezoneInput.value;
+    if (timezone === '')
+        timezone = defaultTimezone;
+    else 
+        timezone = timezoneMap.get(timezone);
+
+    // Update time or date depending on method arguments
+    if (timeOrDate === 'time')
+        timeDisplay.textContent = moment().tz(timezone).format(timeFormat);
+    else if (timeOrDate === 'date')
+        dateDisplay.textContent = moment().tz(timezone).format(dateFormat);
 }
 
-function updateDate() {
-    dateDisplay.textContent = now.tz('America/Los_Angeles').format(dateFormat);
-}
-
-selectedTimezone = timezoneInput.value;
-console.log(selectedTimezone);
+// Whenever a new dropdown item is selected, update time
+timezoneInput.addEventListener('input', () => { updateTime(); });
 addTimezones();
-updateTime('Asia/Tehran');
-updateDate('Asia/Tehran');
-//Add dropdown event listener here
+updateTime();
+updateTime('date');
 setInterval(updateTime, 1000);  // Update time every 1000ms

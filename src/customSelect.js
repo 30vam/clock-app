@@ -15,6 +15,7 @@ function selectOption(e, inputElement, dropdown) {
     // First check if the user didn't accidentally click on an empty space in the optionBox or the search bar
     if (selectedElement.classList.contains('option')) {
         inputElement.value = selectedElement.innerText; // Sets the value for <inout> html to selected option
+        inputElement.dispatchEvent(new Event('input'));
         dropdown.classList.remove('opened'); // Close the optionBox
     }
 }
