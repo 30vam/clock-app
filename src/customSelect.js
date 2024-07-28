@@ -30,8 +30,7 @@ function closedDropdownFromOutside(e, dropdown) {
     if (dropdown.classList.contains('enable-dropdown-search')) {
         dropdownSearch = dropdown.querySelector('.dropdown-search');
         dropdownSearch.value = '';
-        dropdownSearch.dispatchEvent(new Event('input'))  // Fire an event after changin search value programmatically
-        console.log(dropdownSearch)
+        dropdownSearch.dispatchEvent(new Event('input'));  // Fire an event after changin search value programmatically
     }
 }
 
