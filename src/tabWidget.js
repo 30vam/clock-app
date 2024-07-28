@@ -6,7 +6,6 @@
 */
 
 const tabWidgets = document.querySelectorAll('.tabwidget');
-
 const activeTabClassName = 'tabwidget-tab-active';
 
 function switchTab(e, currentTab, tabWidgetMap) {
@@ -22,10 +21,10 @@ function switchTab(e, currentTab, tabWidgetMap) {
     newTab.classList.add(activeTabClassName);
         
     // Hide the currently visible module in tabwidget & make the new content for the selected tab visible
-    const currentModule = tabWidgetMap.get(currentTab)[0];
-    const newModule = tabWidgetMap.get(newTab)[0];
+    const currentModule = tabWidgetMap.get(currentTab);
+    const newModule = tabWidgetMap.get(newTab);
     currentModule.style.display = 'none';
-    newModule.style.display = tabWidgetMap.get(newTab)[1];    
+    newModule.style.display = '';    
     console.log(currentModule, newModule);
 }
 
@@ -42,7 +41,7 @@ for (const tabWidget of tabWidgets) {
         const tab = tabWidgetTabs[i];
         const module = tabWidgetModules[i];
 
-        tabWidgetMap.set(tab, [module, getComputedStyle(module).display]);  // Add the tab and its module to the map AND also its display value : tab, [module, display]
+        tabWidgetMap.set(tab, module);  // Add the tab and its module to the map AND also its display value : tab, [module, display]
         module.style.display = 'none';  // At first, disable all modules inside the tabWidget & make them invisible
 
         // Event Listener for when user clicks on a tab
@@ -51,5 +50,5 @@ for (const tabWidget of tabWidgets) {
 
     // Select the first tab when page loads
     [...tabWidgetMap][0][0].classList.add(activeTabClassName);  // Mark the first tab as active
-    [...tabWidgetMap][0][1][0].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
+    [...tabWidgetMap][0][1].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
 }

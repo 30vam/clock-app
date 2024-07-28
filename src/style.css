@@ -1803,11 +1803,6 @@ video {
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
 }
 
-.bg-red-600{
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
-
 .bg-\[linear-gradient\(345deg\2c _\#9e7dba_26\%\2c _\#4a407a_96\%\)\]{
   background-image: linear-gradient(345deg, #9e7dba 26%, #4a407a 96%);
 }
