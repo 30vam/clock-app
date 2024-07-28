@@ -12,9 +12,13 @@ for (const tabWidget of tabWidgets) {
 
     // Create a map that binds tabs and modules
     for (let i = 0; i < tabWidgetTabs.length; i++) {
-        tabWidgetMap.set(tabWidgetTabs[i], tabWidgetModules[i]);
-    }
-    console.log(tabWidgetMap);
+        const currentTab = tabWidgetTabs[i];
+        const currentModule = tabWidgetModules[i];
 
-    // Disable all modules inside the tabWidget except the first one
+        currentModule.style.display = 'none';  // At first, disable all modules inside the tabWidget
+        tabWidgetMap.set(currentTab, currentModule);
+    }
+
+    // Only make the first module visible at first (First value is selected using spread...)
+    [...tabWidgetMap][0][1].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
 }
