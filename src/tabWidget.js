@@ -1,4 +1,9 @@
-/* tabwidget-tab-active class is for the tab that is currently selected */
+/* 
+   modules are the content shown when their related tab is selected.
+   .tabwidget-content is a container that wraps ALL modules
+   .tabwidget-nav is a container for .tabwidget-tab
+   tabwidget-tab-active class is for the tab that is currently selected 
+*/
 
 const tabWidgets = document.querySelectorAll('.tabwidget');
 
@@ -8,18 +13,20 @@ function switchTab(e, currentTab, tabWidgetMap) {
     const newTab = e.target;
     e.stopPropagation();
 
-    console.log(currentTab);
     // First, check if the tab was active or not
-    if (newTab === currentTab) {
-        console.log('TAB ALREAD SELECTED');
-    } else {
-        //add active class
-        //const newModule;
-
-        currentTab.classList.remove(activeTabClassName);
-        newTab.classList.add(activeTabClassName);
-        console.log('NEW TAB SELECTED');
-    }
+    if (newTab === currentTab) 
+        return;
+    
+    // Add active class to the newly selected tab and remove it from previous tab
+    currentTab.classList.remove(activeTabClassName);
+    newTab.classList.add(activeTabClassName);
+        
+    // Hide the currently visible module in tabwidget & make the new content for the selected tab visible
+    const currentModule = tabWidgetMap.get(currentTab)[0];
+    const newModule = tabWidgetMap.get(newTab)[0];
+    currentModule.style.display = 'none';
+    newModule.style.display = tabWidgetMap.get(newTab)[1];    
+    console.log(currentModule, newModule);
 }
 
 // For all .tabwidget objects
@@ -35,8 +42,8 @@ for (const tabWidget of tabWidgets) {
         const tab = tabWidgetTabs[i];
         const module = tabWidgetModules[i];
 
+        tabWidgetMap.set(tab, [module, getComputedStyle(module).display]);  // Add the tab and its module to the map AND also its display value : tab, [module, display]
         module.style.display = 'none';  // At first, disable all modules inside the tabWidget & make them invisible
-        tabWidgetMap.set(tab, module);  // Add the tab and its module to the map
 
         // Event Listener for when user clicks on a tab
         tab.addEventListener('click', e => switchTab(e, tabWidgetNav.getElementsByClassName(activeTabClassName)[0], tabWidgetMap));  
@@ -44,5 +51,5 @@ for (const tabWidget of tabWidgets) {
 
     // Select the first tab when page loads
     [...tabWidgetMap][0][0].classList.add(activeTabClassName);  // Mark the first tab as active
-    [...tabWidgetMap][0][1].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
+    [...tabWidgetMap][0][1][0].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
 }
