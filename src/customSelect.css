@@ -9,9 +9,9 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
 :root {
     --dropdown-width: 280px;
     --dropdown-height: 48px;
-    --dropdown-bg: white;
+    --dropdown-bg: rgba(255, 255, 255, 0.85);
     --dropdown-border-radius: 9px;
-    --dropdown-box-shadow: 0 10px 25px rgba(19, 19, 19, 0.4);
+    --dropdown-box-shadow: 0 3px 5px rgba(19, 19, 19, 0.4);
     --dropdown-font-weight: 500;
 
     --input-border-radius: 9px;
@@ -20,6 +20,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     --input-outline: none;
     --input-box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
     --input-font-size: 18px;
+    --input-bg: rgba(255, 255, 255, 0);
     --input-text-color: #495057;
 
     --arrow-top-offset: 16px;
@@ -103,6 +104,7 @@ Adding a .enable-dropdown-search to the wrapper div will add the search function
     color: var(--input-text-color);
     width: 100%;
     height: 100%;
+    background-color: var(--input-bg);
     border-radius: var(--input-border-radius);
     padding: var(--input-padding);
     cursor: pointer;

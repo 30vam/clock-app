@@ -1991,6 +1991,11 @@ video {
   line-height: 1;
 }
 
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-bold{
   font-weight: 700;
 }
@@ -2487,6 +2492,16 @@ video {
       max-width: 1536px;
     }
   }
+}
+
+.hover\:bg-cyan-200:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(165 243 252 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-purple-300:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 180 254 / var(--tw-bg-opacity));
 }
 
 .hover\:font-bold:hover{
