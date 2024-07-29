@@ -1,7 +1,7 @@
 .tabwidget {
     display: flex;
     flex-direction: column;
-    width: 380px;
+    width: 350px;
 }
 
 .tabwidget .tabwidget-nav {
@@ -14,7 +14,7 @@
 }
 
 .tabwidget .tabwidget-nav .tabwidget-tab {
-    padding: 0.1em 0.25em;
+    padding: 2.25em 0.25em 0 0.25em;
     border-radius: 0.3em;
     flex-grow: 1;
     background-color: rgba(255, 255, 255, 0.4);
@@ -41,4 +41,26 @@
     border-radius: 0.5em;
     box-shadow: 0 0px 15px 5px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
+}
+
+/* ICONS */
+#clock-tab {
+    background-image: url(../img/clock-svgrepo-com.svg); 
+    background-repeat: no-repeat;
+    background-position: 50% 25%;
+    background-size: 32px;
+}
+
+#stopwatch-tab {
+    background-image: url(../img/timer-stopwatch-time-watch-svgrepo-com.svg); 
+    background-repeat: no-repeat;
+    background-position: 50% 25%;
+    background-size: 32px;
+}
+
+#timer-tab {
+    background-image: url(../img/stopwatch-svgrepo-com.svg); 
+    background-repeat: no-repeat;
+    background-position: 50% 25%;
+    background-size: 32px;
 }
