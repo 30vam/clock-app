@@ -25,7 +25,6 @@ function switchTab(e, currentTab, tabWidgetMap) {
     const newModule = tabWidgetMap.get(newTab);
     currentModule.style.display = 'none';
     newModule.style.display = '';    
-    console.log(currentModule, newModule);
 }
 
 // For all .tabwidget objects
