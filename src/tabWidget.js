@@ -7,6 +7,7 @@
 
 const tabWidgets = document.querySelectorAll('.tabwidget');
 const activeTabClassName = 'tabwidget-tab-active';
+const defaultTabIndex = 0;
 
 function switchTab(e, currentTab, tabWidgetMap) {
     const newTab = e.target;
@@ -47,7 +48,7 @@ for (const tabWidget of tabWidgets) {
         tab.addEventListener('click', e => switchTab(e, tabWidgetNav.getElementsByClassName(activeTabClassName)[0], tabWidgetMap));  
     }
 
-    // Select the first tab when page loads
-    [...tabWidgetMap][0][0].classList.add(activeTabClassName);  // Mark the first tab as active
-    [...tabWidgetMap][0][1].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
+    // Select the first tab as default when page loads
+    [...tabWidgetMap][defaultTabIndex][0].classList.add(activeTabClassName);  // Mark the first tab as active
+    [...tabWidgetMap][defaultTabIndex][1].style.display = '';  // '' makes the display to return to whatever it was normally (For example flexbox in this case instead of block)
 }
