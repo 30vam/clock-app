@@ -1742,6 +1742,11 @@ video {
   border-bottom-left-radius: 0.75rem;
 }
 
+.rounded-b-2xl{
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
 .rounded-bl{
   border-bottom-left-radius: 0.25rem;
 }
