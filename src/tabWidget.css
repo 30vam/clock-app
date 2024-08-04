@@ -52,15 +52,15 @@
 }
 
 #stopwatch-tab {
-    background-image: url(../img/timer-stopwatch-time-watch-svgrepo-com.svg); 
+    background-image: url(../img/stopwatch-svgrepo-com.svg); 
     background-repeat: no-repeat;
     background-position: 50% 25%;
     background-size: 32px;
 }
 
 #timer-tab {
-    background-image: url(../img/stopwatch-svgrepo-com.svg); 
+    background-image: url(../img/timer-stopwatch-time-watch-svgrepo-com.svg); 
     background-repeat: no-repeat;
     background-position: 50% 25%;
     background-size: 32px;
-}
+} 
