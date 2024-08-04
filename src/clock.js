@@ -4,6 +4,7 @@ const dateDisplay = document.querySelector('#date');
 const timezoneDropdown = document.querySelector('#timezone-dropdown');
 const timezoneInput = timezoneDropdown.querySelector('.dropdown-input');
 const stopwatchStartButton = document.querySelector('#stopwatch-start-button');
+const activatedStopwatchButtongroup = document.querySelector('#activated-stopwatch-buttongroup');
 
 // Variables
 const timeFormat = 'HH:mm:ss';
@@ -43,13 +44,16 @@ function updateTime(timeOrDate = 'time') {
 }
 
 function startStopwatch() {
-    // Fade & disable the start button and enable the other buttons
-    console.log('STARTED STOPWATCH');
+    // Fade & disable the start button
+    console.log('STOPWATCH STARTED');
     stopwatchStartButton.style.opacity = 0;
-    stopwatchStartButton.style.transform = 'translateY(20px)';
     stopwatchStartButton.disabled = true;
-        
-    
+
+    //Enable other buttons after opacity transition has ended:
+    setTimeout(() => { stopwatchStartButton.style.display = 'none';
+    activatedStopwatchButtongroup.style.display = '';
+    activatedStopwatchButtongroup.style.opacity = 100;  
+     }, 150);
 }
 
 //Event Listeners
@@ -61,3 +65,5 @@ addTimezones();
 updateTime();
 updateTime('date');
 setInterval(updateTime, 1000);  // Update time every 1000ms
+
+activatedStopwatchButtongroup.style.display = 'none';
