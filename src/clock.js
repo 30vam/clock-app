@@ -3,6 +3,7 @@ const timeDisplay = document.querySelector('#time');
 const dateDisplay = document.querySelector('#date');
 const timezoneDropdown = document.querySelector('#timezone-dropdown');
 const timezoneInput = timezoneDropdown.querySelector('.dropdown-input');
+const stopwatchStartButton = document.querySelector('#stopwatch-start-button');
 
 // Variables
 const timeFormat = 'HH:mm:ss';
@@ -41,8 +42,21 @@ function updateTime(timeOrDate = 'time') {
         dateDisplay.textContent = moment().tz(timezone).format(dateFormat);
 }
 
-// Whenever a new dropdown item is selected, update time
-timezoneInput.addEventListener('input', () => { updateTime(); });
+function startStopwatch() {
+    // Fade & disable the start button and enable the other buttons
+    console.log('STARTED STOPWATCH');
+    stopwatchStartButton.style.opacity = 0;
+    stopwatchStartButton.style.transform = 'translateY(20px)';
+    stopwatchStartButton.disabled = true;
+        
+    
+}
+
+//Event Listeners
+timezoneInput.addEventListener('input', () => { updateTime(); }); // Whenever a new dropdown item is selected, update time
+stopwatchStartButton.addEventListener('click', startStopwatch);
+
+//Startup
 addTimezones();
 updateTime();
 updateTime('date');
