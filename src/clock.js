@@ -10,7 +10,7 @@ const stopwatchStartButton = document.querySelector('#stopwatch-start-button');
 const activatedStopwatchButtongroup = document.querySelector('#activated-stopwatch-buttongroup');
 const stopwatchCheckpointButton = document.querySelector('#stopwatch-checkpoint-button');
 const stopwatchPauseButton = document.querySelector('#stopwatch-pause-button');
-const stopwatchResetButton = document.querySelector('stopwatch-reset-button');
+const stopwatchResetButton = document.querySelector('#stopwatch-reset-button');
 
 // Variables
 const timeFormat = 'HH:mm:ss';
@@ -67,6 +67,23 @@ function enableStopwatchButtons() {
     activatedStopwatchButtongroup.style.opacity = 100; }, 150);
 }
 
+function disableStopwatchButtons() {
+    // ALWAYS make sure pause button is reset to its default icon
+    if (stopwatchPauseButton.querySelector('svg').classList.contains('hidden')) {
+        stopwatchPauseButton.querySelector('svg').classList.remove('hidden');  // Pause icon
+        stopwatchPauseButton.querySelector('svg + svg').classList.add('hidden');  // Start icon
+    }
+
+    //Disable button group & activate start button
+    activatedStopwatchButtongroup.style.opacity = 0;
+    activatedStopwatchButtongroup.classList.remove('flex'); 
+    activatedStopwatchButtongroup.classList.add('hidden');
+    stopwatchStartButton.classList.remove('hidden');
+    stopwatchStartButton.style.opacity = 100;
+    stopwatchStartButton.disabled = false;
+    
+}
+
 function startStopwatch() {
     // If the timer is starting from null(starting the stopwatch for the  first time of after reset)
     if (!isStopwatchPaused) {
@@ -113,13 +130,22 @@ function toggleStopwatch() {
 }
 
 function resetStopwatch() {
-    
+    clearInterval(stopwatchIntervalID);
+    stopwatchStartTime = null;
+    stopwatchPauseTime = null;
+    isStopwatchPaused = 0;
+    stopwatchPauseDuration = 0;
+    stopwatchDisplay.innerText = '00:00:00';
+    stopwatchMillisecDisplay.innerText = '.00';
+
+    disableStopwatchButtons();
 }
 
 //Event Listeners
 timezoneInput.addEventListener('input', () => { updateTime(); }); // Whenever a new dropdown item is selected in clock tab, update time
 stopwatchStartButton.addEventListener('click', startStopwatch);
 stopwatchPauseButton.addEventListener('click', toggleStopwatch);
+stopwatchResetButton.addEventListener('click', resetStopwatch)
 
 //Startup
 addTimezones();  // Adds the list of timezones to the dropdown in clock tab
