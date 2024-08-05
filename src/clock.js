@@ -4,7 +4,8 @@ const dateDisplay = document.querySelector('#date');
 const timezoneDropdown = document.querySelector('#timezone-dropdown');
 const timezoneInput = timezoneDropdown.querySelector('.dropdown-input');
 
-const stopwatchDisplay = document.querySelector('#stopwatch-display');
+const stopwatchDisplay = document.querySelector('#stopwatch-display').firstElementChild;
+const stopwatchMillisecDisplay = document.querySelector('#stopwatch-display').lastElementChild;
 const stopwatchStartButton = document.querySelector('#stopwatch-start-button');
 const activatedStopwatchButtongroup = document.querySelector('#activated-stopwatch-buttongroup');
 const stopwatchCheckpointButton = document.querySelector('#stopwatch-checkpoint-button');
@@ -17,6 +18,7 @@ const dateFormat = 'MMMM DD, YYYY';
 const defaultTimezone = 'Asia/Tehran';
 const timezones = moment.tz.names();
 const timezoneMap = new Map(); // Key(left side) is dropdown timezone name, and value(right side) is the timezone name in MomentJS
+let stopwatchPaused = null;
 let stopwatchInterval = null;
 
 function addTimezones() {
@@ -51,16 +53,17 @@ function updateTime(timeOrDate = 'time') {
 
 function startStopwatch() {
     // Fade & disable the start button
-    console.log('STOPWATCH STARTED');
     stopwatchStartButton.style.opacity = 0;
     stopwatchStartButton.disabled = true;
+    stopwatchPaused = false;
 
     //Enable other buttons after opacity transition has ended:
-    setTimeout(() => { stopwatchStartButton.style.display = 'none';
-    activatedStopwatchButtongroup.style.display = '';
+    setTimeout(() => { stopwatchStartButton.classList.add('hidden');
+    activatedStopwatchButtongroup.classList.remove('hidden');  // Remove tailwind .hidden (display: none)
+    activatedStopwatchButtongroup.classList.add('flex');  // Make the buttons a flexbox. Other flex properties are already set in HTML
     activatedStopwatchButtongroup.style.opacity = 100; }, 150);
     
-    // Start the stopwatch
+    // Start the stopwatch and update it every 10 ms
     const startingTime = new Date();
     stopwatchInterval = setInterval(() => updateStopwatch(startingTime), 10);
 }
@@ -74,18 +77,30 @@ function updateStopwatch(startingTime) {
     const second = timeElapsed.getUTCSeconds();
     const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
 
-    console.log(`${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }.${ millisecond > 9 ? millisecond : '0' + millisecond }`);
-    stopwatchDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }.${ millisecond > 9 ? millisecond : '0' + millisecond }`;
+    stopwatchDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
+    stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;
+    console.log(stopwatchMillisecDisplay);
+}
+
+function toggleStopwatch() {
+    if (!stopwatchPaused) {
+        
+    } else {
+
+    }
+}
+
+function resetStopwatch() {
+    
 }
 
 //Event Listeners
-timezoneInput.addEventListener('input', () => { updateTime(); }); // Whenever a new dropdown item is selected, update time
+timezoneInput.addEventListener('input', () => { updateTime(); }); // Whenever a new dropdown item is selected in clock tab, update time
 stopwatchStartButton.addEventListener('click', startStopwatch);
+stopwatchPauseButton.addEventListener('click', toggleStopwatch);
 
 //Startup
-addTimezones();
-updateTime();
-updateTime('date');
+addTimezones();  // Adds the list of timezones to the dropdown in clock tab
+updateTime();  // Sets clock at startup
+updateTime('date');  // Sets date at startup
 setInterval(updateTime, 1000);  // Update time every 1000ms
-
-activatedStopwatchButtongroup.style.display = 'none';
