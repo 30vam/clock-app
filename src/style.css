@@ -741,6 +741,14 @@ video {
   margin-top: 1.25rem;
 }
 
+.ml-\[27\%\]{
+  margin-left: 27%;
+}
+
+.ml-\[28\%\]{
+  margin-left: 28%;
+}
+
 .box-border{
   box-sizing: border-box;
 }

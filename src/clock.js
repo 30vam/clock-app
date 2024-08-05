@@ -100,7 +100,14 @@ function toggleStopwatch() {
         isStopwatchPaused = true;
         stopwatchPauseTime = new Date();
         clearInterval(stopwatchIntervalID);
+
+        // Change pause icon to start
+        stopwatchPauseButton.querySelector('svg').classList.add('hidden'); // Pause icon
+        stopwatchPauseButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
     } else {
+        // Change start icon to pause
+        stopwatchPauseButton.querySelector('svg').classList.remove('hidden');
+        stopwatchPauseButton.querySelector('svg + svg').classList.add('hidden');
         startStopwatch();
     }
 }
