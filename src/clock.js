@@ -72,8 +72,9 @@ function updateStopwatch(startingTime) {
     const hour = timeElapsed.getUTCHours();
     const minute = timeElapsed.getUTCMinutes();
     const second = timeElapsed.getUTCSeconds();
-    const millisecond = timeElapsed.getUTCMilliseconds();
+    const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
 
+    console.log(`${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }.${ millisecond > 9 ? millisecond : '0' + millisecond }`);
     stopwatchDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }.${ millisecond > 9 ? millisecond : '0' + millisecond }`;
 }
 
