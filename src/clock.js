@@ -18,8 +18,12 @@ const dateFormat = 'MMMM DD, YYYY';
 const defaultTimezone = 'Asia/Tehran';
 const timezones = moment.tz.names();
 const timezoneMap = new Map(); // Key(left side) is dropdown timezone name, and value(right side) is the timezone name in MomentJS
-let stopwatchPaused = null;
-let stopwatchInterval = null;
+
+let stopwatchIntervalID = null;
+let stopwatchStartTime = null;
+let stopwatchPauseTime = null;
+let isStopwatchPaused = 0;
+let stopwatchPauseDuration = 0;
 
 function addTimezones() {
     const optionbox = timezoneDropdown.querySelector('.optionbox');  // Get the .optionbox object
@@ -51,42 +55,53 @@ function updateTime(timeOrDate = 'time') {
         dateDisplay.textContent = moment().tz(timezone).format(dateFormat);
 }
 
-function startStopwatch() {
+function enableStopwatchButtons() {
     // Fade & disable the start button
     stopwatchStartButton.style.opacity = 0;
     stopwatchStartButton.disabled = true;
-    stopwatchPaused = false;
 
     //Enable other buttons after opacity transition has ended:
     setTimeout(() => { stopwatchStartButton.classList.add('hidden');
     activatedStopwatchButtongroup.classList.remove('hidden');  // Remove tailwind .hidden (display: none)
     activatedStopwatchButtongroup.classList.add('flex');  // Make the buttons a flexbox. Other flex properties are already set in HTML
     activatedStopwatchButtongroup.style.opacity = 100; }, 150);
-    
-    // Start the stopwatch and update it every 10 ms
-    const startingTime = new Date();
-    stopwatchInterval = setInterval(() => updateStopwatch(startingTime), 10);
 }
 
-function updateStopwatch(startingTime) {
-    // Calculate the passed time since stopwatch started
+function startStopwatch() {
+    // If the timer is starting from null(starting the stopwatch for the  first time of after reset)
+    if (!isStopwatchPaused) {
+        enableStopwatchButtons();
+        stopwatchStartTime = new Date();
+    } 
+    if (isStopwatchPaused) {
+        stopwatchPauseDuration += (new Date() - stopwatchPauseTime);  // Calculate pause duration if the stop watch is paused
+        isStopwatchPaused = false;
+    }
+  
+    // Start the stopwatch and update it every 10 ms
+    stopwatchIntervalID = setInterval(updateStopwatch, 10);
+}
+
+function updateStopwatch() {
     const currentTime = new Date();
-    const timeElapsed = new Date(currentTime - startingTime);
+    const timeElapsed = new Date(currentTime - stopwatchStartTime - stopwatchPauseDuration);  // Calculate the passed time since stopwatch started
     const hour = timeElapsed.getUTCHours();
     const minute = timeElapsed.getUTCMinutes();
     const second = timeElapsed.getUTCSeconds();
     const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
-
+    
     stopwatchDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
     stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;
-    console.log(stopwatchMillisecDisplay);
 }
 
 function toggleStopwatch() {
-    if (!stopwatchPaused) {
-        
+    // Pause the stopwatch if it wasn't already paused
+    if (!isStopwatchPaused) {
+        isStopwatchPaused = true;
+        stopwatchPauseTime = new Date();
+        clearInterval(stopwatchIntervalID);
     } else {
-
+        startStopwatch();
     }
 }
 
