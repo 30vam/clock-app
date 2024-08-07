@@ -15,7 +15,7 @@ let stopwatchStartTime = null;
 let stopwatchPauseTime = null;
 let isStopwatchPaused = 0;
 let stopwatchPauseDuration = 0;
-const animationLength = 500;
+const fadeAnimationLength = 500;
 
 function enableStopwatchButtons() {
     // Fade & disable the start button
@@ -76,7 +76,7 @@ function updateStopwatch() {
 function addCheckpoint() {
     // New checkpoint flexbox
     const newCheckpointElement = document.createElement('div');
-    newCheckpointElement.classList.add('w-[90%]', 'flex', 'justify-between', 'text-[16px]', 'opacity-0', 'transition-opacity', 'duration-500');
+    newCheckpointElement.classList.add('w-[90%]', 'flex', 'justify-between', 'text-[16px]', 'opacity-0', 'transition-opacity', `duration-[${fadeAnimationLength}ms]`);
     stopwatchCheckpointList.appendChild(newCheckpointElement);
 
     // Checkpoint rank
@@ -92,21 +92,21 @@ function addCheckpoint() {
     // Scroll to the end of the checkpoint list
     stopwatchCheckpointList.scrollTop = stopwatchCheckpointList.scrollWidth;
 
-    //When the checkpoint buttons is pressed for the first time:
+    // When the checkpoint buttons is pressed for the first time:
     if (stopwatchCheckpointList.children.length === 1) {
-        // First, move stopwatch display to the top (its real position):
+        // First, move the stopwatch display to the top (its real position):
         stopwatchContentDisplay.classList.remove('translate-y-[var(--stopwatch-display-offset)]');
         stopwatchHourDisplay.classList.add('translate-y-0');
 
         // Make the checkpoint list visible
         stopwatchCheckpointList.classList.remove('hidden');
         stopwatchCheckpointList.classList.add('flex');
-        setTimeout(animationLength);
-        stopwatchCheckpointList.classList.add('opacity-100'); // Fade in effect
+        // Fade in effect
+        setTimeout(() => { stopwatchCheckpointList.classList.remove('opacity-0');
+        stopwatchCheckpointList.classList.add('opacity-100');  } , 100);
     }
 
     // Give the checkpoint a fade-in transition
-    setTimeout(animationLength);
     newCheckpointElement.classList.add('opacity-100');
 }
 
@@ -149,13 +149,14 @@ function resetStopwatch() {
     stopwatchMillisecDisplay.innerText = '.00';
 
     // Remove all checkpoints
-    stopwatchCheckpointList.classList.add('opacity-0');  // Fade out effect
-    setTimeout(250);
-    stopwatchCheckpointList.classList.add('hidden'); 
-    stopwatchCheckpointList.classList.remove('flex'); 
-
-    // Bring the stopwatch down again after removing checkpoints
-    stopwatchCheckpointList.replaceChildren();
+    stopwatchCheckpointList.classList.remove('opacity-100');
+    stopwatchCheckpointList.classList.add('opacity-0');  
+    
+    // Fade out effect, after 0.5s the transition is done & set display:none
+    setTimeout(() => { stopwatchCheckpointList.classList.add('hidden'); 
+    stopwatchCheckpointList.classList.remove('flex');
+    stopwatchCheckpointList.replaceChildren(); }, fadeAnimationLength);
+     // Bring the stopwatch down again after removing checkpoints
     stopwatchContentDisplay.classList.add('translate-y-[var(--stopwatch-display-offset)]');
     stopwatchHourDisplay.classList.remove('translate-y-0');
 
