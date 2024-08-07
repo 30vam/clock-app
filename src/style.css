@@ -2146,6 +2146,14 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[12px\]{
+  font-size: 12px;
+}
+
+.text-\[16px\]{
+  font-size: 16px;
+}
+
 .font-bold{
   font-weight: 700;
 }
