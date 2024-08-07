@@ -912,6 +912,10 @@ video {
   width: 95%;
 }
 
+.w-\[80\%\]{
+  width: 80%;
+}
+
 .flex-shrink{
   flex-shrink: 1;
 }
@@ -1468,6 +1472,14 @@ video {
   gap: 1.5rem;
 }
 
+.gap-1{
+  gap: 0.25rem;
+}
+
+.gap-4{
+  gap: 1rem;
+}
+
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -1798,6 +1810,10 @@ video {
 
 .rounded-xl{
   border-radius: 0.75rem;
+}
+
+.rounded-sm{
+  border-radius: 0.125rem;
 }
 
 .rounded-b{
