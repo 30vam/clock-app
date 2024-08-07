@@ -75,12 +75,12 @@ function updateStopwatch() {
 function addCheckpoint() {
     // New checkpoint flexbox
     const newCheckpointElement = document.createElement('div');
-    newCheckpointElement.classList.add('w-[90]', 'flex', 'justify-between');
+    newCheckpointElement.classList.add('w-full', 'flex', 'justify-between', 'text-[20px]');
     stopwatchCheckpointList.appendChild(newCheckpointElement);
 
     // Checkpoint rank
     const checkpointNum = document.createElement('span');
-    checkpointNum.innerText = stopwatchCheckpointList.children.length;
+    checkpointNum.innerText = `${stopwatchCheckpointList.children.length}.`;
     newCheckpointElement.appendChild(checkpointNum);
 
     // Checkpoint split
