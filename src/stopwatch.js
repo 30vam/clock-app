@@ -75,7 +75,7 @@ function updateStopwatch() {
 function addCheckpoint() {
     // New checkpoint flexbox
     const newCheckpointElement = document.createElement('div');
-    newCheckpointElement.classList.add('w-full', 'flex', 'justify-between', 'text-[20px]');
+    newCheckpointElement.classList.add('w-full', 'flex', 'justify-between', 'text-[20px]', 'opacity-0', 'transition-opacity', 'duration-500');
     stopwatchCheckpointList.appendChild(newCheckpointElement);
 
     // Checkpoint rank
@@ -83,27 +83,26 @@ function addCheckpoint() {
     checkpointNum.innerText = `${stopwatchCheckpointList.children.length}.`;
     newCheckpointElement.appendChild(checkpointNum);
 
-    // Checkpoint split
+    // Checkpoint split, store current time on every checkpoint with date()
 
     // Checkpoint time
     const checkpointTime = document.createElement('span');
     checkpointTime.innerText = stopwatchContentDisplay.innerText;
     newCheckpointElement.appendChild(checkpointTime);
 
-    console.log(stopwatchCheckpointList.children.length);
     //When the checkpoint buttons is pressed for the first time:
     if (stopwatchCheckpointList.children.length === 1) {
-        console.log('FIRST CHECKPOINT');
         // First, move stopwatch display to the top (its real position):
         stopwatchContentDisplay.classList.remove('translate-y-[calc(var(--stopwatch-content-height)/3)]');
-        stopwatchHourDisplay.classList.add('translate-y-0');
+        stopwatchHourDisplay.classList.add('translate-y-0', 'scale-90');
 
         // Make the checkpoint list visible
         stopwatchCheckpointList.classList.remove('hidden');
         stopwatchCheckpointList.classList.add('flex');
-
-        // Give the first checkpoint a fade-in transition
     }
+
+    // Give the checkpoint a fade-in transition
+    setTimeout( () =>  { newCheckpointElement.classList.add('opacity-100'); } );
 }
 
 function toggleStopwatch() {
