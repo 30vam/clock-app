@@ -872,6 +872,14 @@ video {
   height: 100dvh;
 }
 
+.h-16{
+  height: 4rem;
+}
+
+.h-12{
+  height: 3rem;
+}
+
 .w-14{
   width: 3.5rem;
 }
@@ -902,6 +910,14 @@ video {
 
 .w-\[weird-and-invalid\]{
   width: weird-and-invalid;
+}
+
+.w-16{
+  width: 4rem;
+}
+
+.w-12{
+  width: 3rem;
 }
 
 .flex-shrink{
@@ -955,12 +971,6 @@ video {
 
 .translate-y-\[var\(--stopwatch-display-offset\)\]{
   --tw-translate-y: var(--stopwatch-display-offset);
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-110{
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2581,14 +2591,6 @@ video {
 
 .duration-700{
   transition-duration: 700ms;
-}
-
-.duration-\[500\]{
-  transition-duration: 500;
-}
-
-.duration-\[500ms\]{
-  transition-duration: 500ms;
 }
 
 .ease-in{
