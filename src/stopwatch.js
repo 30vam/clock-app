@@ -1,6 +1,8 @@
 // Elements
-const stopwatchDisplay = document.querySelector('#stopwatch-display').firstElementChild;
+const stopwatchContentDisplay = document.querySelector('#stopwatch-display');
+const stopwatchHourDisplay = document.querySelector('#stopwatch-display').firstElementChild;
 const stopwatchMillisecDisplay = document.querySelector('#stopwatch-display').lastElementChild;
+const stopwatchCheckpointList = document.querySelector('#stopwatch-checkpoint-list');
 const stopwatchStartButton = document.querySelector('#stopwatch-start-button');
 const activatedStopwatchButtongroup = document.querySelector('#activated-stopwatch-buttongroup');
 const stopwatchCheckpointButton = document.querySelector('#stopwatch-checkpoint-button');
@@ -66,8 +68,42 @@ function updateStopwatch() {
     const second = timeElapsed.getUTCSeconds();
     const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
     
-    stopwatchDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
+    stopwatchHourDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
     stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;
+}
+
+function addCheckpoint() {
+    // New checkpoint flexbox
+    const newCheckpointElement = document.createElement('div');
+    newCheckpointElement.classList.add('w-[90]', 'flex', 'justify-between');
+    stopwatchCheckpointList.appendChild(newCheckpointElement);
+
+    // Checkpoint rank
+    const checkpointNum = document.createElement('span');
+    checkpointNum.innerText = stopwatchCheckpointList.children.length;
+    newCheckpointElement.appendChild(checkpointNum);
+
+    // Checkpoint split
+
+    // Checkpoint time
+    const checkpointTime = document.createElement('span');
+    checkpointTime.innerText = stopwatchContentDisplay.innerText;
+    newCheckpointElement.appendChild(checkpointTime);
+
+    console.log(stopwatchCheckpointList.children.length);
+    //When the checkpoint buttons is pressed for the first time:
+    if (stopwatchCheckpointList.children.length === 1) {
+        console.log('FIRST CHECKPOINT');
+        // First, move stopwatch display to the top (its real position):
+        stopwatchContentDisplay.classList.remove('translate-y-[calc(var(--stopwatch-content-height)/3)]');
+        stopwatchHourDisplay.classList.add('translate-y-0');
+
+        // Make the checkpoint list visible
+        stopwatchCheckpointList.classList.remove('hidden');
+        stopwatchCheckpointList.classList.add('flex');
+
+        // Give the first checkpoint a fade-in transition
+    }
 }
 
 function toggleStopwatch() {
@@ -94,7 +130,7 @@ function resetStopwatch() {
     stopwatchPauseTime = null;
     isStopwatchPaused = 0;
     stopwatchPauseDuration = 0;
-    stopwatchDisplay.innerText = '00:00:00';
+    stopwatchHourDisplay.innerText = '00:00:00';
     stopwatchMillisecDisplay.innerText = '.00';
 
     disableStopwatchButtons();
@@ -103,4 +139,5 @@ function resetStopwatch() {
 // Event Listeners
 stopwatchStartButton.addEventListener('click', startStopwatch);
 stopwatchPauseButton.addEventListener('click', toggleStopwatch);
-stopwatchResetButton.addEventListener('click', resetStopwatch)
+stopwatchResetButton.addEventListener('click', resetStopwatch);
+stopwatchCheckpointButton.addEventListener('click', addCheckpoint);
