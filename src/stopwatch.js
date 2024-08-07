@@ -96,7 +96,7 @@ function addCheckpoint() {
     //When the checkpoint buttons is pressed for the first time:
     if (stopwatchCheckpointList.children.length === 1) {
         // First, move stopwatch display to the top (its real position):
-        stopwatchContentDisplay.classList.remove('translate-y-[calc(var(--stopwatch-content-height)/3)]');
+        stopwatchContentDisplay.classList.remove('translate-y-[var(--stopwatch-display-offset)]');
         stopwatchHourDisplay.classList.add('translate-y-0', 'scale-90');
 
         // Make the checkpoint list visible
@@ -119,11 +119,21 @@ function toggleStopwatch() {
         // Change pause icon to start
         stopwatchPauseButton.querySelector('svg').classList.add('hidden'); // Pause icon
         stopwatchPauseButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
+
+        //Disable checkpoint button on pause
+        stopwatchCheckpointButton.disabled = true;
+        stopwatchCheckpointButton.classList.add('opacity-50');
+        stopwatchCheckpointButton.classList.remove('hover:scale-90');
     } else {
         // Change start icon to pause
         stopwatchPauseButton.querySelector('svg').classList.remove('hidden');
         stopwatchPauseButton.querySelector('svg + svg').classList.add('hidden');
         startStopwatch();
+
+        //Enable checkpoint button on pause
+        stopwatchCheckpointButton.disabled = false;
+        stopwatchCheckpointButton.classList.remove('opacity-50');
+        stopwatchCheckpointButton.classList.add('hover:scale-90');
     }
 }
 
