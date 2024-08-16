@@ -872,14 +872,6 @@ video {
   height: 100dvh;
 }
 
-.h-16{
-  height: 4rem;
-}
-
-.h-12{
-  height: 3rem;
-}
-
 .w-14{
   width: 3.5rem;
 }
@@ -910,14 +902,6 @@ video {
 
 .w-\[weird-and-invalid\]{
   width: weird-and-invalid;
-}
-
-.w-16{
-  width: 4rem;
-}
-
-.w-12{
-  width: 3rem;
 }
 
 .flex-shrink{
