@@ -729,10 +729,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mb-6{
-  margin-bottom: 1.5rem;
-}
-
 .ml-\[28\%\]{
   margin-left: 28%;
 }
@@ -884,6 +880,58 @@ video {
   height: 100dvh;
 }
 
+.h-\[100px\]{
+  height: 100px;
+}
+
+.h-\[120px\]{
+  height: 120px;
+}
+
+.h-\[80\%\]{
+  height: 80%;
+}
+
+.h-\[60\%\]{
+  height: 60%;
+}
+
+.h-\[10\%\]{
+  height: 10%;
+}
+
+.h-\[70\%\]{
+  height: 70%;
+}
+
+.h-\[20\%\]{
+  height: 20%;
+}
+
+.h-\[1\%\]{
+  height: 1%;
+}
+
+.h-\[5\%\]{
+  height: 5%;
+}
+
+.h-\[6\%\]{
+  height: 6%;
+}
+
+.h-\[4\%\]{
+  height: 4%;
+}
+
+.h-\[32px\]{
+  height: 32px;
+}
+
+.h-\[12px\]{
+  height: 12px;
+}
+
 .w-14{
   width: 3.5rem;
 }
@@ -914,6 +962,14 @@ video {
 
 .w-\[weird-and-invalid\]{
   width: weird-and-invalid;
+}
+
+.w-full{
+  width: 100%;
+}
+
+.w-\[full\]{
+  width: full;
 }
 
 .flex-shrink{
@@ -1958,6 +2014,10 @@ video {
           box-decoration-break: clone;
 }
 
+.bg-cover{
+  background-size: cover;
+}
+
 .bg-fixed{
   background-attachment: fixed;
 }
@@ -1985,6 +2045,10 @@ video {
 .bg-clip-text{
   -webkit-background-clip: text;
           background-clip: text;
+}
+
+.bg-center{
+  background-position: center;
 }
 
 .bg-repeat{
@@ -2673,6 +2737,8 @@ video {
   --timer-content-height: 350px;
 }
 
+/* For hiding scrollbars */
+
 .hidden-scrollbar {
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
@@ -2683,6 +2749,13 @@ video {
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
+}
+
+/* For snapping items in a scrolling container */
+
+.timepicker-snap {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 /* Scrollbar width */
