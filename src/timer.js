@@ -1,8 +1,17 @@
 // Elements
+const timerDisplay = document.querySelector('#timer-display');
+
 const timePickers = document.querySelector('#time-pickers');
 const hourPicker = timePickers.querySelector('#hour-picker');
 const minutePicker = timePickers.querySelector('#minute-picker');
 const secondPicker = timePickers.querySelector('#second-picker');
+
+const timerButtonGroup = document.querySelector('#timer-buttongroup'); 
+const timerStartButton = document.querySelector('#timer-start-button');
+const timerResetButton = document.querySelector('#timer-reset-button');
+
+// Variables
+let startingTime = 0;
 
 function addArrows(pickerElement) {
      // Up Arrow
@@ -33,7 +42,28 @@ function fillPicker(pickerElement, maxNum) {
     addArrows(pickerElement);
 }
 
+function getCenterItem(scrollBox) {
+    const scrollBoxRect = scrollBox.getBoundingClientRect();  // This rectangle tells us about the position of top, buttom etc. borders and also the width and height of the element
+    return document.elementFromPoint(scrollBoxRect.left + (scrollBoxRect.width/2), scrollBoxRect.top + (scrollBoxRect.height/2));
+}
+
+function startTimer() {
+    const hour = getCenterItem(hourPicker).innerText;
+    const minute = getCenterItem(minutePicker).innerText;
+    const second = getCenterItem(secondPicker).innerText;
+
+    const timerDisplayText = `${ hour }:${ minute }:${ second }`;
+    timerDisplay.innerText = timerDisplayText;
+
+    startingTime = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
+
+    console.log(startingTime);
+}
+
 // Fill time pickers with numbers
 fillPicker(hourPicker, 24);
 fillPicker(minutePicker, 60);
 fillPicker(secondPicker, 60);
+
+// Event Listeners
+timerStartButton.addEventListener('click', startTimer);
