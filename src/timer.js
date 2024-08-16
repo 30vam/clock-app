@@ -7,8 +7,8 @@ const secondPicker = timePicker.querySelector('#second-picker');
 function fillPicker(pickerElement, maxNum) {
     for (let index = 0; index <= maxNum; index++) {
         const newItem = document.createElement('li');
-        newItem.innerText = `${ index > 10 ? index : '0' + index }`;
-        console.log(`${ index > 9 ? index : '0' + index  }`);
+        newItem.innerText = `${ index > 9  ? index : '0' + index }`;
+        newItem.classList.add('snap-start');
 
         pickerElement.append(newItem);
     }

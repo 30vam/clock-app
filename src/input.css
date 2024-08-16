@@ -16,7 +16,15 @@
   --stopwatch-content-height: 296px;
   --stopwatch-display-offset: 108px;
 
-  --timer-content-height: 296px;
+  --timer-content-height: 350px;
+}
+
+.hidden-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.hidden-scrollbar::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
 /* Scrollbar width */

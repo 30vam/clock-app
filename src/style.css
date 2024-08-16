@@ -729,6 +729,10 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
 .ml-\[28\%\]{
   margin-left: 28%;
 }
@@ -743,14 +747,6 @@ video {
 
 .mt-5{
   margin-top: 1.25rem;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
-}
-
-.mb-6{
-  margin-bottom: 1.5rem;
 }
 
 .box-border{
@@ -856,6 +852,10 @@ video {
   height: 3.5rem;
 }
 
+.h-\[200px\]{
+  height: 200px;
+}
+
 .h-\[40px\]{
   height: 40px;
 }
@@ -882,10 +882,6 @@ video {
 
 .h-dvh{
   height: 100dvh;
-}
-
-.h-\[200px\]{
-  height: 200px;
 }
 
 .w-14{
@@ -1872,11 +1868,6 @@ video {
   border-bottom-width: 1px;
 }
 
-.border-x-2{
-  border-left-width: 2px;
-  border-right-width: 2px;
-}
-
 .border-b{
   border-bottom-width: 1px;
 }
@@ -1923,20 +1914,6 @@ video {
 
 .border-none{
   border-style: none;
-}
-
-.border-gray-500{
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
-.border-gray-300{
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.border-opacity-70{
-  --tw-border-opacity: 0.7;
 }
 
 .bg-\[\#ffffff66\]{
@@ -2080,10 +2057,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.pb-4{
-  padding-bottom: 1rem;
-}
-
 .text-left{
   text-align: left;
 }
@@ -2154,6 +2127,11 @@ video {
   line-height: 2.5rem;
 }
 
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-6xl{
   font-size: 3.75rem;
   line-height: 1;
@@ -2171,16 +2149,6 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-.text-5xl{
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .font-bold{
@@ -2702,7 +2670,19 @@ video {
 :root {
   --stopwatch-content-height: 296px;
   --stopwatch-display-offset: 108px;
-  --timer-content-height: 296px;
+  --timer-content-height: 350px;
+}
+
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 /* Scrollbar width */

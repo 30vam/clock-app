@@ -80,13 +80,17 @@
                 </div>
 
                 <!--Timer widget-->
-                <div class="flex tabular-nums justify-center items-end mb-6 tabwidget-module h-[var(--timer-content-height)]">
+                <div class="flex tabular-nums flex-col justify-evenly items-center tabwidget-module h-[var(--timer-content-height)]">
+                    <!--Timer display-->
+                    <div class="mt-3 text-5xl">00:00:00</div>
                     <!--Timepicker wrapper-->
-                    <div id="time-picker" class="flex justify-center gap-4 text-5xl align-middle h-[200px]">
-                        <ul id="hour-picker" class="overflow-y-scroll"></ul>
-                        <ul id="minute-picker" class="overflow-y-scroll border-x-2"></ul>
-                        <ul id="second-picker" class="overflow-y-scroll"></ul>
+                    <div id="time-picker" class="flex justify-center gap-4 text-4xl align-middle h-[200px]">
+                        <ul id="hour-picker" class="overflow-y-scroll snap-y hidden-scrollbar"></ul>
+                        <ul id="minute-picker" class="overflow-y-scroll snap-y hidden-scrollbar"></ul>
+                        <ul id="second-picker" class="overflow-y-scroll snap-y hidden-scrollbar"></ul>
                     </div>
+                    <!--Buttons-->
+                    <div class="">Buttons</div>
                 </div>
             </div>
         </section>
