@@ -15,25 +15,27 @@
 :root {
   --stopwatch-content-height: 296px;
   --stopwatch-display-offset: 108px;
+
+  --timer-content-height: 296px;
 }
 
-/* width */
+/* Scrollbar width */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
+/* Scrollbar track */
 ::-webkit-scrollbar-track {
   background: none;
 }
 
-/* Handle */
+/* Scrollbar handle */
 ::-webkit-scrollbar-thumb {
   background: #88888881;
   border-radius: 20px;
 }
 
-/* Handle on hover */
+/* Scrollbar handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555555b7;
 }

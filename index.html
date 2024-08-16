@@ -28,6 +28,7 @@
             </div>
             
             <div class="tabwidget-content">
+                <!--Clock widget-->
                 <div class="flex flex-col items-center mt-3 mb-5 tabwidget-module">
                     <!--Clock diplay-->
                     <output id="time" class="text-6xl tabular-nums">
@@ -45,6 +46,7 @@
                     </div>
                 </div>
 
+                <!--Stopwatch widget-->
                 <div class="flex flex-col items-center justify-between gap-4 mt-3 mb-3 tabwidget-module h-[var(--stopwatch-content-height)]">
                     <!--Stopwatch display-->
                     <output id="stopwatch-display" class="mt-2 text-4xl transition-transform duration-700 font-light translate-y-[var(--stopwatch-display-offset)] tabular-nums">
@@ -77,14 +79,22 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center tabwidget-module">
-                    Timer
+                <!--Timer widget-->
+                <div class="flex tabular-nums justify-center items-end mb-6 tabwidget-module h-[var(--timer-content-height)]">
+                    <!--Timepicker wrapper-->
+                    <div id="time-picker" class="flex justify-center gap-4 text-5xl align-middle h-[200px]">
+                        <ul id="hour-picker" class="overflow-y-scroll"></ul>
+                        <ul id="minute-picker" class="overflow-y-scroll border-x-2"></ul>
+                        <ul id="second-picker" class="overflow-y-scroll"></ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!--Footer-->
     <footer class="flex items-center justify-center">
+        <!--Contact icons-->
         <nav class="flex gap-3"> 
             <a class="inline-block text-sm transition-transform hover:scale-125 bg-[#ffffff66] rounded-lg shadow-lg w-14 h-14" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to=khodaparast2011@gmail.com"><img src="img/gmail-icon.png" alt="G-mail" class="shadow-lg"></a>
             <a class="inline-block hover:scale-125 text-sm transition-transform bg-[#ffffff66] rounded-lg shadow-lg w-14 h-14" target="_blank" href="https://github.com/30vam/clock-app"><img src="img/github-icon.png" alt="Github" class="shadow-lg "></a> 
@@ -96,6 +106,7 @@
     <script src="src/customSelect.js"></script>
     <script src="src/clock.js"></script>
     <script src="src/stopwatch.js"></script>
+    <script src="src/timer.js"></script>
     
 </body>
 </html>
