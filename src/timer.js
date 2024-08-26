@@ -11,7 +11,11 @@ const timerStartButton = document.querySelector('#timer-start-button');
 const timerResetButton = document.querySelector('#timer-reset-button');
 
 // Variables
-let startingTime = 0;
+let timerIntervalID = null;
+let timerStartTime = null;
+let timerPauseTime = null;
+let isTimerPaused = 0;
+let timerPauseDuration = 0;
 
 function addArrows(pickerElement) {
      // Up Arrow
@@ -48,6 +52,10 @@ function getCenterItem(scrollBox) {
 }
 
 function startTimer() {
+    console.log('Timer started'); timerStartTime = 22;
+    isTimerPaused = false;
+
+
     const hour = getCenterItem(hourPicker).innerText;
     const minute = getCenterItem(minutePicker).innerText;
     const second = getCenterItem(secondPicker).innerText;
@@ -55,9 +63,38 @@ function startTimer() {
     const timerDisplayText = `${ hour }:${ minute }:${ second }`;
     timerDisplay.innerText = timerDisplayText;
 
-    startingTime = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
+    timerStartTime = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
 
-    console.log(startingTime);
+    console.log(timerStartTime);
+}
+
+function toggleTimer() {
+    // If timer is starting for the first time
+    if (timerStartTime === null) {
+        // Change pause icon to start
+        timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
+        timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
+        startTimer();
+        return;
+    }
+
+    // Pause the timer if it wasn't already paused
+    if (!isTimerPaused) {
+        // Change pause icon to start
+        timerStartButton.querySelector('svg').classList.remove('hidden'); // Pause icon
+        timerStartButton.querySelector('svg + svg').classList.add('hidden'); // Play icon
+        
+        isTimerPaused = true;
+        /*timerPauseTime = new Date();
+        clearInterval(timerIntervalID);*/
+        console.log('Timer paused');
+
+    } else {
+        // Change start icon to pause
+        timerStartButton.querySelector('svg').classList.add('hidden');
+        timerStartButton.querySelector('svg + svg').classList.remove('hidden');
+        startTimer();
+    }
 }
 
 // Fill time pickers with numbers
@@ -66,4 +103,4 @@ fillPicker(minutePicker, 60);
 fillPicker(secondPicker, 60);
 
 // Event Listeners
-timerStartButton.addEventListener('click', startTimer);
+timerStartButton.addEventListener('click', toggleTimer);
