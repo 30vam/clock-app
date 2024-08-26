@@ -56,6 +56,11 @@ function startStopwatch() {
         stopwatchPauseDuration += (new Date() - stopwatchPauseTime);  // Calculate pause duration if the stop watch is paused
         isStopwatchPaused = false;
     }
+
+    //Enable checkpoint button on start (because it may be disabled from pausing)
+    stopwatchCheckpointButton.disabled = false;
+    stopwatchCheckpointButton.classList.remove('opacity-50');
+    stopwatchCheckpointButton.classList.add('hover:scale-90');
   
     // Start the stopwatch and update it every 10 ms
     stopwatchIntervalID = setInterval(updateStopwatch, 10);
@@ -130,11 +135,6 @@ function toggleStopwatch() {
         stopwatchPauseButton.querySelector('svg').classList.remove('hidden');
         stopwatchPauseButton.querySelector('svg + svg').classList.add('hidden');
         startStopwatch();
-
-        //Enable checkpoint button on pause
-        stopwatchCheckpointButton.disabled = false;
-        stopwatchCheckpointButton.classList.remove('opacity-50');
-        stopwatchCheckpointButton.classList.add('hover:scale-90');
     }
 }
 

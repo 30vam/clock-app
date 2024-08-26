@@ -2104,21 +2104,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.py-\[20\%\]{
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.py-\[40\%\]{
-  padding-top: 40%;
-  padding-bottom: 40%;
-}
-
 .py-\[100\%\]{
   padding-top: 100%;
   padding-bottom: 100%;
