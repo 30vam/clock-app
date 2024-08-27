@@ -12,7 +12,7 @@ const timerResetButton = timerButtonGroup.querySelector('#timer-reset-button');
 
 // Variables
 let timerIntervalID = null;
-let isTimerPaused = 0;
+let isTimerPaused = false;
 let secondsLeft = 0;
 
 function addArrows(pickerElement) {
@@ -75,12 +75,22 @@ function startTimer() {
 }
 
 function updateTimer() {
+    // Check if the timer has finished
+    if (secondsLeft === 0) {
+        resetTimer();
+        return;
+    }
+
     secondsLeft--;  // Update the time left
 
     // Calcute left hours, minutes & seconds
     const timerHour = Math.floor(secondsLeft / 3600);
     const timerMinute = Math.floor((secondsLeft % 3600) / 60);
     const timerSeconds = secondsLeft % 60;
+
+    // Update the time display
+    const timerDisplayText = `${ timerHour > 9 ? timerHour : '0' + timerHour }:${ timerMinute > 9 ? timerMinute : '0' + timerMinute }:${ timerSeconds > 9 ? timerSeconds : '0' + timerSeconds }`;
+    timerDisplay.innerText = timerDisplayText;
 
     // Console tests
     console.log(`Seconds left: ${secondsLeft}`);
@@ -110,7 +120,17 @@ function toggleTimer() {
 }
 
 function resetTimer() {
-    timerIntervalID = null;
+    clearInterval(timerIntervalID);  // Stop the interval AND ONLY then you can set the ID to null
+    timerIntervalID = null;  // Setting this to null means the timer hasn't been started yet
+    secondsLeft = 0;  // For when clicking on the shutdown button manually
+    timerDisplay.innerText = '00:00:00';
+    isTimerPaused = false;
+
+    // Change start icon to pause
+    timerStartButton.querySelector('svg').classList.remove('hidden');
+    timerStartButton.querySelector('svg + svg').classList.add('hidden');
+
+    console.log('Timer has been reset.');
 }
 
 // Fill time pickers with numbers
@@ -118,14 +138,18 @@ fillPicker(hourPicker, 24);
 fillPicker(minutePicker, 60);
 fillPicker(secondPicker, 60);
 
+// Disable the start button when the selected time is 0
+
 // Event Listeners
 timerStartButton.addEventListener('click', () => {
-    // If the start button is being clicked for the first time:
-    if (timerIntervalID === null) {
+    // If the start button is being clicked for the first time & the selected time is greater than 0:
+    if (timerIntervalID === null && secondsLeft !== 0) {
         startTimer();
     } 
     // Toggle pause or start
-    else {
+    else if (secondsLeft !== 0) {
         toggleTimer();
     }
 });
+
+timerResetButton.addEventListener('click', resetTimer);
