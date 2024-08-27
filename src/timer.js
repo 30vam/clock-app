@@ -1,7 +1,9 @@
 // Elements
 const timerDisplay = document.querySelector('#timer-display');
 
-const timePickers = document.querySelector('#time-pickers');
+const timePickerWrapper = document.querySelector('#time-picker-wrapper');
+const timePickers = timePickerWrapper.querySelector('#time-pickers');
+const timePickerHighlight = timePickerWrapper.querySelector('timepicker-highlight');
 const hourPicker = timePickers.querySelector('#hour-picker');
 const minutePicker = timePickers.querySelector('#minute-picker');
 const secondPicker = timePickers.querySelector('#second-picker');
@@ -50,6 +52,17 @@ function getCenterItem(scrollBox) {
     return document.elementFromPoint(scrollBoxRect.left + (scrollBoxRect.width/2), scrollBoxRect.top + (scrollBoxRect.height/2));
 }
 
+function togglePickerScrolling(enableOrDisable = 'disable') {
+    // Disable pickers
+    if (enableOrDisable === 'disable') {
+        timePickerWrapper.classList.add('opacity-25');
+    } 
+    // Enable pickers
+    else if (enableOrDisable === 'enable') {
+        timePickerWrapper.classList.remove('opacity-25');
+    }
+}
+
 function changeStartButtonIcon(iconName) {
     if (iconName === 'start') {
         timerStartButton.querySelector('svg').classList.remove('hidden'); // Pause icon
@@ -78,6 +91,7 @@ function toggleStartButtonActivation() {
 // Runs if it's the first time starting the timer
 function startTimer() {
     changeStartButtonIcon('pause');
+    togglePickerScrolling('disable');
 
     // Get the selected timecap
     const timerHour = getCenterItem(hourPicker).innerText;
@@ -123,18 +137,18 @@ function updateTimer() {
 function toggleTimer() {
     // Pause the timer
     if (!isTimerPaused) {
+        isTimerPaused = true;
         changeStartButtonIcon('start');
         clearInterval(timerIntervalID);
-        isTimerPaused = true;
-
+        
         // Console tests
         console.log('Timer paused');
     } 
     // Wake up the timer from pause
     else {
+        isTimerPaused = false;
         changeStartButtonIcon('pause');
         timerIntervalID = setInterval(updateTimer, 1000);
-        isTimerPaused = false;
 
         // Console tests
         console.log('Timer started from pause'); 
@@ -142,6 +156,8 @@ function toggleTimer() {
 }
 
 function resetTimer() {
+    togglePickerScrolling('enable'); // Enable scrolling inside pickers 
+
     clearInterval(timerIntervalID);  // Stop the interval AND ONLY then you can set the ID to null
     timerIntervalID = null;  // Setting this to null means the timer hasn't been started yet
     isTimerPaused = false;
