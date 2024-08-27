@@ -13,9 +13,7 @@ const timerResetButton = timerButtonGroup.querySelector('#timer-reset-button');
 // Variables
 let timerIntervalID = null;
 let isTimerPaused = 0;
-let timerHour = 0;
-let timerMinute = 0;
-let timerSecond = 0;
+let secondsLeft = 0;
 
 function addArrows(pickerElement) {
      // Up Arrow
@@ -59,24 +57,23 @@ function startTimer() {
     timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
 
     // Get the selected time cap
-    timerHour = getCenterItem(hourPicker).innerText;
-    timerMinute = getCenterItem(minutePicker).innerText;
-    timerSecond = getCenterItem(secondPicker).innerText;
+    const timerHour = getCenterItem(hourPicker).innerText;
+    const timerMinute = getCenterItem(minutePicker).innerText;
+    const timerSecond = getCenterItem(secondPicker).innerText;
 
     // Set the clock display to selected time
     const timerDisplayText = `${ timerHour }:${ timerMinute }:${ timerSecond }`;
     timerDisplay.innerText = timerDisplayText;
 
-    //const timerStartTimeMillisec = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
-     // Convert timer value to numbers
-    timerHour = parseInt(timerHour); 
-    timerMinute = parseInt(timerMinute);
-    timerSecond = parseInt(timerSecond);
+    
+    // Convert timer value to numbers
+    secondsLeft = parseInt(timerHour) * 3600 + parseInt(timerMinute) * 60 + parseInt(timerSecond);
     timerIntervalID = setInterval(updateTimer, 1000);  // Update timer every 1 sec
 
     // Console tests
     console.log('Timer started for the first time');
     console.log(`Hour: ${timerHour}, Minute: ${timerMinute}, Second: ${timerSecond}`);
+    console.log(`Seconds left: ${secondsLeft}`);
 }
 
 function updateTimer() {
