@@ -56,10 +56,27 @@ function togglePickerScrolling(enableOrDisable = 'disable') {
     // Disable pickers
     if (enableOrDisable === 'disable') {
         timePickerWrapper.classList.add('opacity-25');
+
+        // Disable scrolling inside every timepicker
+        hourPicker.classList.remove('overflow-y-scroll'); 
+        hourPicker.classList.add('overflow-hidden'); 
+        minutePicker.classList.remove('overflow-y-scroll'); 
+        minutePicker.classList.add('overflow-hidden'); 
+        secondPicker.classList.remove('overflow-y-scroll'); 
+        secondPicker.classList.add('overflow-hidden'); 
+        
     } 
     // Enable pickers
     else if (enableOrDisable === 'enable') {
         timePickerWrapper.classList.remove('opacity-25');
+
+        // Enable scrolling inside every timepicker
+        hourPicker.classList.add('overflow-y-scroll'); 
+        hourPicker.classList.remove('overflow-hidden'); 
+        minutePicker.classList.add('overflow-y-scroll'); 
+        minutePicker.classList.remove('overflow-hidden'); 
+        secondPicker.classList.add('overflow-y-scroll'); 
+        secondPicker.classList.remove('overflow-hidden'); 
     }
 }
 
