@@ -49,10 +49,25 @@ function getCenterItem(scrollBox) {
     return document.elementFromPoint(scrollBoxRect.left + (scrollBoxRect.width/2), scrollBoxRect.top + (scrollBoxRect.height/2));
 }
 
+function toggleStartButton() {
+    // Disable the start button when when the selected time is 0
+    if (getCenterItem(hourPicker).innerText === '00' && getCenterItem(minutePicker).innerText === '00' && getCenterItem(secondPicker).innerText === '00') {
+        timerStartButton.disabled = true;
+        timerStartButton.classList.add('opacity-50');
+        timerStartButton.classList.remove('hover:scale-90');
+    }
+    // Enable the start button otherwise if it wasn't already enabled
+    else if(timerStartButton.disabled) {
+        timerStartButton.disabled = false;
+        timerStartButton.classList.remove('opacity-50');
+        timerStartButton.classList.add('hover:scale-90');
+    }
+}
+
 // Runs if it's the first time starting the timer
 function startTimer() {
     // Change start icon to pause
-    isTimerPaused = false;
+    
     timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
     timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
 
@@ -68,6 +83,7 @@ function startTimer() {
     // Convert timer value to numbers
     secondsLeft = parseInt(timerHour) * 3600 + parseInt(timerMinute) * 60 + parseInt(timerSecond);
     timerIntervalID = setInterval(updateTimer, 1000);  // Update timer every 1 sec
+    isTimerPaused = false;
 
     // Console tests
     console.log('Timer started for the first time');
@@ -138,18 +154,21 @@ fillPicker(hourPicker, 24);
 fillPicker(minutePicker, 60);
 fillPicker(secondPicker, 60);
 
-// Disable the start button when the selected time is 0
+toggleStartButton();
 
 // Event Listeners
+// Scrolling events for activating/disabling the start button when selected time is not 0
+hourPicker.addEventListener('scroll', toggleStartButton);
+minutePicker.addEventListener('scroll', toggleStartButton);
+secondPicker.addEventListener('scroll', toggleStartButton);
+// Events for clicking on the timer buttons
 timerStartButton.addEventListener('click', () => {
     // If the start button is being clicked for the first time & the selected time is greater than 0:
-    if (timerIntervalID === null && secondsLeft !== 0) {
+    if (timerIntervalID === null) {
         startTimer();
     } 
     // Toggle pause or start
-    else if (secondsLeft !== 0) {
+    else {
         toggleTimer();
-    }
-});
-
+    } });
 timerResetButton.addEventListener('click', resetTimer);
