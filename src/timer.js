@@ -7,12 +7,11 @@ const minutePicker = timePickers.querySelector('#minute-picker');
 const secondPicker = timePickers.querySelector('#second-picker');
 
 const timerButtonGroup = document.querySelector('#timer-buttongroup'); 
-const timerStartButton = document.querySelector('#timer-start-button');
-const timerResetButton = document.querySelector('#timer-reset-button');
+const timerStartButton = timerButtonGroup.querySelector('#timer-start-button');
+const timerResetButton = timerButtonGroup.querySelector('#timer-reset-button');
 
 // Variables
 let timerIntervalID = null;
-let hasTimerStarted = 0;
 let isTimerPaused = 0;
 let timerHour = 0;
 let timerMinute = 0;
@@ -69,7 +68,6 @@ function startTimer() {
     timerDisplay.innerText = timerDisplayText;
 
     //const timerStartTimeMillisec = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
-    hasTimerStarted = 1;
      // Convert timer value to numbers
     timerHour = parseInt(timerHour); 
     timerMinute = parseInt(timerMinute);
@@ -91,7 +89,7 @@ function updateTimer() {
     
     stopwatchHourDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
     stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;*/
-    
+
 }
 
 function toggleTimer() {
@@ -119,7 +117,7 @@ function toggleTimer() {
 }
 
 function resetTimer() {
-    hasTimerStarted = 0;
+    timerIntervalID = null;
 }
 
 // Fill time pickers with numbers
@@ -130,7 +128,7 @@ fillPicker(secondPicker, 60);
 // Event Listeners
 timerStartButton.addEventListener('click', () => {
     // If the start button is being clicked for the first time:
-    if (!hasTimerStarted) {
+    if (timerIntervalID === null) {
         startTimer();
     } 
     // Toggle pause or start
