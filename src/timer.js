@@ -13,6 +13,7 @@ const timerResetButton = timerButtonGroup.querySelector('#timer-reset-button');
 // Variables
 let timerIntervalID = null;
 let isTimerPaused = false;
+let selectedDuration = 0;
 let secondsLeft = 0;
 
 function addArrows(pickerElement) {
@@ -82,6 +83,7 @@ function startTimer() {
     
     // Convert timer value to numbers
     secondsLeft = parseInt(timerHour) * 3600 + parseInt(timerMinute) * 60 + parseInt(timerSecond);
+    selectedDuration = secondsLeft;
     timerIntervalID = setInterval(updateTimer, 1000);  // Update timer every 1 sec
     isTimerPaused = false;
 
@@ -92,8 +94,9 @@ function startTimer() {
 
 function updateTimer() {
     // Check if the timer has finished
-    if (secondsLeft === 0) {
+    if (secondsLeft === 1) {
         resetTimer();
+        setTimeout( () => { alert(`The timer has ended! Time elapsed: ${selectedDuration} seconds.`); });
         return;
     }
 
