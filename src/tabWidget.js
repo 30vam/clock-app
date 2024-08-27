@@ -7,7 +7,7 @@
 
 const tabWidgets = document.querySelectorAll('.tabwidget');
 const activeTabClassName = 'tabwidget-tab-active';
-const defaultTabIndex = 2;
+const defaultTabIndex = 0;
 
 function switchTab(e, currentTab, tabWidgetMap) {
     const newTab = e.target;
