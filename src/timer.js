@@ -51,19 +51,26 @@ function getCenterItem(scrollBox) {
     return document.elementFromPoint(scrollBoxRect.left + (scrollBoxRect.width/2), scrollBoxRect.top + (scrollBoxRect.height/2));
 }
 
+// Runs if it's the first time starting the timer
 function startTimer() {
-    console.log('Timer started'); 
-    isTimerPaused = false;
+    console.log('Timer started for the first time');
 
+    // Change pause icon to start
+    isTimerPaused = false;
+    timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
+    timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
+
+    // Get selected time
     const hour = getCenterItem(hourPicker).innerText;
     const minute = getCenterItem(minutePicker).innerText;
     const second = getCenterItem(secondPicker).innerText;
 
+    // Set the clock display to selected time
     const timerDisplayText = `${ hour }:${ minute }:${ second }`;
     timerDisplay.innerText = timerDisplayText;
 
-    timerStartTime = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
-
+    const timerStartTimeMillisec = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
+    timerStartTime = new Date(timerStartTimeMillisec);
     console.log(timerStartTime);
 }
 
@@ -72,17 +79,7 @@ function updateTimer() {
 }
 
 function toggleTimer() {
-    // If timer is starting for the first time
-    if (timerStartTime === null) {
-        // Change pause icon to start
-        console.log('Timer started for the first time');
-        timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
-        timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
-        startTimer();
-        return;
-    }
-
-    // Pause the timer if it wasn't already paused
+    // Pause the timer
     if (!isTimerPaused) {
         // Change pause icon to start
         timerStartButton.querySelector('svg').classList.remove('hidden'); // Pause icon
@@ -93,15 +90,19 @@ function toggleTimer() {
         clearInterval(timerIntervalID);*/
         console.log('Timer paused');
 
-    } else {
+    } 
+    // Wake up the timer from pause
+    else {
         // Change start icon to pause
         timerStartButton.querySelector('svg').classList.add('hidden');
         timerStartButton.querySelector('svg + svg').classList.remove('hidden');
-        startTimer();
+        
+        console.log('Timer started from pause'); 
+        isTimerPaused = false;
     }
 }
 
-function resetTimer(params) {
+function resetTimer() {
     timerStartTime = null;
 }
 
@@ -111,4 +112,13 @@ fillPicker(minutePicker, 60);
 fillPicker(secondPicker, 60);
 
 // Event Listeners
-timerStartButton.addEventListener('click', toggleTimer);
+timerStartButton.addEventListener('click', () => {
+    // If the start button is being clicked for the first time:
+    if (timerStartTime === null) {
+        startTimer();
+    } 
+    // Toggle pause or start
+    else {
+        toggleTimer();
+    }
+});
