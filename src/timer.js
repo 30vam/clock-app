@@ -64,7 +64,6 @@ function startTimer() {
     // Set the clock display to selected time
     const timerDisplayText = `${ timerHour }:${ timerMinute }:${ timerSecond }`;
     timerDisplay.innerText = timerDisplayText;
-
     
     // Convert timer value to numbers
     secondsLeft = parseInt(timerHour) * 3600 + parseInt(timerMinute) * 60 + parseInt(timerSecond);
@@ -72,21 +71,19 @@ function startTimer() {
 
     // Console tests
     console.log('Timer started for the first time');
-    console.log(`Hour: ${timerHour}, Minute: ${timerMinute}, Second: ${timerSecond}`);
     console.log(`Seconds left: ${secondsLeft}`);
 }
 
 function updateTimer() {
-    /*const currentTime = new Date();
-    const timeElapsed = new Date(currentTime - hasTimerStarted - stopwatchPauseDuration);  // Calculate the passed time since stopwatch started
-    const hour = timeElapsed.getUTCHours();
-    const minute = timeElapsed.getUTCMinutes();
-    const second = timeElapsed.getUTCSeconds();
-    const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
-    
-    stopwatchHourDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
-    stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;*/
+    secondsLeft--;  // Update the time left
 
+    // Calcute left hours, minutes & seconds
+    const timerHour = Math.floor(secondsLeft / 3600);
+    const timerMinute = Math.floor((secondsLeft % 3600) / 60);
+    const timerSeconds = secondsLeft % 60;
+
+    // Console tests
+    console.log(`Seconds left: ${secondsLeft}`);
 }
 
 function toggleTimer() {
@@ -100,7 +97,6 @@ function toggleTimer() {
         /*timerPauseTime = new Date();
         clearInterval(timerIntervalID);*/
         console.log('Timer paused');
-
     } 
     // Wake up the timer from pause
     else {
