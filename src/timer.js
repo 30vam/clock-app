@@ -50,6 +50,16 @@ function getCenterItem(scrollBox) {
     return document.elementFromPoint(scrollBoxRect.left + (scrollBoxRect.width/2), scrollBoxRect.top + (scrollBoxRect.height/2));
 }
 
+function changeStartButtonIcon(iconName) {
+    if (iconName === 'start') {
+        timerStartButton.querySelector('svg').classList.remove('hidden'); // Pause icon
+        timerStartButton.querySelector('svg + svg').classList.add('hidden'); // Play icon
+    } else if (iconName === 'pause') {
+        timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
+        timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
+    }
+}
+
 function toggleStartButtonActivation() {
     // Disable the start button when when the selected time is 0
     if (getCenterItem(hourPicker).innerText === '00' && getCenterItem(minutePicker).innerText === '00' && getCenterItem(secondPicker).innerText === '00') {
@@ -67,9 +77,7 @@ function toggleStartButtonActivation() {
 
 // Runs if it's the first time starting the timer
 function startTimer() {
-    // Change start icon to pause
-    timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
-    timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
+    changeStartButtonIcon('pause');
 
     // Get the selected timecap
     const timerHour = getCenterItem(hourPicker).innerText;
@@ -83,7 +91,6 @@ function startTimer() {
     secondsLeft = parseInt(timerHour) * 3600 + parseInt(timerMinute) * 60 + parseInt(timerSecond);
     selectedDuration = secondsLeft;
     timerIntervalID = setInterval(updateTimer, 1000);  // Update timer every 1 sec
-    isTimerPaused = false;
 
     // Console tests
     console.log('Timer started for the first time');
@@ -116,10 +123,7 @@ function updateTimer() {
 function toggleTimer() {
     // Pause the timer
     if (!isTimerPaused) {
-        // Change pause icon to start
-        timerStartButton.querySelector('svg').classList.remove('hidden'); // Pause icon
-        timerStartButton.querySelector('svg + svg').classList.add('hidden'); // Play icon
-        
+        changeStartButtonIcon('start');
         clearInterval(timerIntervalID);
         isTimerPaused = true;
 
@@ -128,12 +132,9 @@ function toggleTimer() {
     } 
     // Wake up the timer from pause
     else {
-        // Change start icon to pause
-        timerStartButton.querySelector('svg').classList.add('hidden');
-        timerStartButton.querySelector('svg + svg').classList.remove('hidden');
-        
-        isTimerPaused = false;
+        changeStartButtonIcon('pause');
         timerIntervalID = setInterval(updateTimer, 1000);
+        isTimerPaused = false;
 
         // Console tests
         console.log('Timer started from pause'); 
@@ -146,11 +147,9 @@ function resetTimer() {
     isTimerPaused = false;
     secondsLeft = 0;  // For when clicking on the shutdown button manually
     timerDisplay.innerText = '00:00:00';
+    changeStartButtonIcon('start');
 
-    // Change start icon to pause
-    timerStartButton.querySelector('svg').classList.remove('hidden');
-    timerStartButton.querySelector('svg + svg').classList.add('hidden');
-
+    // Console tests
     console.log('Timer has been reset.');
 }
 
