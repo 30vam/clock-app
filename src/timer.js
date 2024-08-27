@@ -12,10 +12,11 @@ const timerResetButton = document.querySelector('#timer-reset-button');
 
 // Variables
 let timerIntervalID = null;
-let timerStartTime = null;
-let timerPauseTime = null;
+let hasTimerStarted = 0;
 let isTimerPaused = 0;
-let timerPauseDuration = 0;
+let timerHour = 0;
+let timerMinute = 0;
+let timerSecond = 0;
 
 function addArrows(pickerElement) {
      // Up Arrow
@@ -53,29 +54,44 @@ function getCenterItem(scrollBox) {
 
 // Runs if it's the first time starting the timer
 function startTimer() {
-    console.log('Timer started for the first time');
-
-    // Change pause icon to start
+    // Change start icon to pause
     isTimerPaused = false;
     timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
     timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
 
-    // Get selected time
-    const hour = getCenterItem(hourPicker).innerText;
-    const minute = getCenterItem(minutePicker).innerText;
-    const second = getCenterItem(secondPicker).innerText;
+    // Get the selected time cap
+    timerHour = getCenterItem(hourPicker).innerText;
+    timerMinute = getCenterItem(minutePicker).innerText;
+    timerSecond = getCenterItem(secondPicker).innerText;
 
     // Set the clock display to selected time
-    const timerDisplayText = `${ hour }:${ minute }:${ second }`;
+    const timerDisplayText = `${ timerHour }:${ timerMinute }:${ timerSecond }`;
     timerDisplay.innerText = timerDisplayText;
 
-    const timerStartTimeMillisec = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
-    timerStartTime = new Date(timerStartTimeMillisec);
-    console.log(timerStartTime);
+    //const timerStartTimeMillisec = (Number(hour) * 3600 + Number(minute) * 60 + Number(second)) * 1000;
+    hasTimerStarted = 1;
+     // Convert timer value to numbers
+    timerHour = parseInt(timerHour); 
+    timerMinute = parseInt(timerMinute);
+    timerSecond = parseInt(timerSecond);
+    timerIntervalID = setInterval(updateTimer, 1000);  // Update timer every 1 sec
+
+    // Console tests
+    console.log('Timer started for the first time');
+    console.log(`Hour: ${timerHour}, Minute: ${timerMinute}, Second: ${timerSecond}`);
 }
 
 function updateTimer() {
-
+    /*const currentTime = new Date();
+    const timeElapsed = new Date(currentTime - hasTimerStarted - stopwatchPauseDuration);  // Calculate the passed time since stopwatch started
+    const hour = timeElapsed.getUTCHours();
+    const minute = timeElapsed.getUTCMinutes();
+    const second = timeElapsed.getUTCSeconds();
+    const millisecond = Math.floor(timeElapsed.getUTCMilliseconds() / 10);
+    
+    stopwatchHourDisplay.innerText = `${ hour > 9 ? hour : '0' + hour }:${ minute > 9 ? minute : '0' + minute }:${ second > 9 ? second : '0' + second }`;
+    stopwatchMillisecDisplay.innerText = `.${ millisecond > 9 ? millisecond : '0' + millisecond }`;*/
+    
 }
 
 function toggleTimer() {
@@ -103,7 +119,7 @@ function toggleTimer() {
 }
 
 function resetTimer() {
-    timerStartTime = null;
+    hasTimerStarted = 0;
 }
 
 // Fill time pickers with numbers
@@ -114,7 +130,7 @@ fillPicker(secondPicker, 60);
 // Event Listeners
 timerStartButton.addEventListener('click', () => {
     // If the start button is being clicked for the first time:
-    if (timerStartTime === null) {
+    if (!hasTimerStarted) {
         startTimer();
     } 
     // Toggle pause or start
