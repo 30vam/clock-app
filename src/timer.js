@@ -35,18 +35,12 @@ function addArrows(pickerElement) {
      pickerElement.parentNode.append(downArrow);
 }
 
-function handleArrowClick(scrollableWindow, upOrDown = 'up') {
-    if (timerIntervalID === null) {
-        let scrollAmount = 1;
-        if (upOrDown === 'up') {
-            scrollAmount = -scrollAmount
-        } 
+function handleArrowClick(scrollableWindow, upOrDownString = 'up') {
+    let scrollAmount = 1;
+    if (upOrDownString === 'up')
+        scrollAmount = -scrollAmount;
         
-        scrollableWindow.scrollBy( {
-            top: scrollAmount,
-            
-        } );
-    }
+    scrollableWindow.scrollBy({ top: scrollAmount });
 }
 
 function fillPicker(pickerElement, maxNum) {
@@ -67,9 +61,16 @@ function getCenterItem(scrollBox) {
 }
 
 function togglePickerScrolling(enableOrDisable = 'disable') {
+    // Get all arrows in time pickers inside a NodeList object
+    const arrows = timePickerWrapper.querySelectorAll('button')
+
     // Disable pickers
     if (enableOrDisable === 'disable') {
         timePickerWrapper.classList.add('opacity-25');
+
+        // Disable arrow buttons
+        for (const arrow of arrows)
+            arrow.disabled = true;
 
         // Disable scrolling inside every timepicker
         hourPicker.classList.remove('overflow-y-scroll'); 
@@ -83,6 +84,10 @@ function togglePickerScrolling(enableOrDisable = 'disable') {
     // Enable pickers
     else if (enableOrDisable === 'enable') {
         timePickerWrapper.classList.remove('opacity-25');
+
+        // Enable arrow buttons
+        for (const arrow of arrows)
+            arrow.disabled = false;
 
         // Enable scrolling inside every timepicker
         hourPicker.classList.add('overflow-y-scroll'); 
