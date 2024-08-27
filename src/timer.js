@@ -52,9 +52,8 @@ function getCenterItem(scrollBox) {
 }
 
 function startTimer() {
-    console.log('Timer started'); timerStartTime = 22;
+    console.log('Timer started'); 
     isTimerPaused = false;
-
 
     const hour = getCenterItem(hourPicker).innerText;
     const minute = getCenterItem(minutePicker).innerText;
@@ -68,10 +67,15 @@ function startTimer() {
     console.log(timerStartTime);
 }
 
+function updateTimer() {
+
+}
+
 function toggleTimer() {
     // If timer is starting for the first time
     if (timerStartTime === null) {
         // Change pause icon to start
+        console.log('Timer started for the first time');
         timerStartButton.querySelector('svg').classList.add('hidden'); // Pause icon
         timerStartButton.querySelector('svg + svg').classList.remove('hidden'); // Play icon
         startTimer();
@@ -95,6 +99,10 @@ function toggleTimer() {
         timerStartButton.querySelector('svg + svg').classList.remove('hidden');
         startTimer();
     }
+}
+
+function resetTimer(params) {
+    timerStartTime = null;
 }
 
 // Fill time pickers with numbers
